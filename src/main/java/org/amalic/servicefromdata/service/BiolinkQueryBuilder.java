@@ -43,6 +43,7 @@ public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 		return String.format(GRAPH_FROM_DATASET_PART, dataset);
 	}
 	
+	// TODO: fix the class URI strafter using hardcoded URI?
 	public static String classes(String dataset) {
 		return PREFIXES 
 				+ "SELECT ?dataset ?class ?count\n" 
@@ -59,7 +60,7 @@ public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 				+ "    group by ?dataset ?classUri\n" 
 				+ "    order by desc(?count)\n" 
 				+ "  }\n" 
-				+ "  BIND(strafter(str(?classUri),\"http://w3id.org/biolink/vocab/\") as ?class)\n" 
+				+ "  BIND(strafter(str(?classUri),\"https://w3id.org/biolink/vocab/\") as ?class)\n" 
 				+ "  FILTER(strlen(?class) > 0)\n" 
 				+ "}";
 	}
@@ -89,7 +90,7 @@ public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 				+ "    ?entityUri ?property ?value .\n" 
 				+ "    FILTER(?id = \"%s\")\n" 
 				+ "  }\n" 
-				+ "  BIND(strafter(str(?classUri),\"http://w3id.org/biolink/vocab/\") as ?class)\n" 
+				+ "  BIND(strafter(str(?classUri),\"https://w3id.org/biolink/vocab/\") as ?class)\n" 
 				+ "}"
 				, className, id);
 	}
