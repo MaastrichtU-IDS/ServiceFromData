@@ -15,7 +15,7 @@ public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 		+ "PREFIX dct: <http://purl.org/dc/terms/>\n"
 		+ "PREFIX dctypes: <http://purl.org/dc/dcmitype/>\n"
 		+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-		+ "PREFIX idot: <https://identifiers.org/idot/>\n"
+		+ "PREFIX idot: <http://identifiers.org/idot/>\n"
 		+ "PREFIX dcat: <http://www.w3.org/ns/dcat#>\n"
 		+ "PREFIX void: <http://rdfs.org/ns/void#>\n"
 		+ "PREFIX void-ext: <http://ldf.fi/void-ext#>\n"
