@@ -1,4 +1,4 @@
-package org.amalic.servicefromdata.config;
+package org.semanticscience.d2s.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,16 +22,16 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 			.select()
-			.apis(RequestHandlerSelectors.basePackage("org.amalic.servicefromdata.service"))
+			.apis(RequestHandlerSelectors.basePackage("org.semanticscience.d2s.api.service"))
 			.build()
 			.apiInfo(new ApiInfoBuilder()
-				.title("Services From Data")
+				.title("Data2Services API")
 				.contact(new Contact(
-					"Alexander Malic"
-					, "https://github.com/amalic/ServiceFromData"
-					, "alexander.malic@gmail.com"))
-				.license("Attribution 4.0 International (CC BY 4.0)")
-				.licenseUrl("https://creativecommons.org/licenses/by/4.0/")
+					"Vincent Emonet"
+					, "https://github.com/MaastrichtU-IDS/d2s-api"
+					, "vincent.emonet@maastrichtuniversity.nl"))
+				.license("MIT license")
+				.licenseUrl("https://opensource.org/licenses/MIT")
 				.build());
 	}
 

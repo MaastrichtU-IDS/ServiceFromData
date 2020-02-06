@@ -1,4 +1,4 @@
-package org.amalic.servicefromdata.service;
+package org.semanticscience.d2s.api.service;
 
 public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 	

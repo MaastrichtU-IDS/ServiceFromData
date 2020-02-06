@@ -2,8 +2,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.amalic</groupId>
-	<artifactId>ServiceFromData</artifactId>
+	<groupId>org.semanticscience</groupId>
+	<artifactId>d2s-api</artifactId>
 	<version>0.9.0</version>
 	
 	<parent>
@@ -51,7 +51,7 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<!-- "no main manifest attribute" issue
 					<configuration>
-						<mainClass>org.amalic.servicefromdata.Application</mainClass>
+						<mainClass>org.semanticscience.d2s.api.Application</mainClass>
 					</configuration> -->
 					<executions>
 						<execution>

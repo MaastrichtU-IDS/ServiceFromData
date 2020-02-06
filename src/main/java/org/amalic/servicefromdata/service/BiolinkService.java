@@ -1,4 +1,4 @@
-package org.amalic.servicefromdata.service;
+package org.semanticscience.d2s.api.service;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.amalic.servicefromdata.repository.RdfRepository;
-import org.amalic.servicefromdata.repository.ResultAs;
+import org.semanticscience.d2s.api.repository.RdfRepository;
+import org.semanticscience.d2s.api.repository.ResultAs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

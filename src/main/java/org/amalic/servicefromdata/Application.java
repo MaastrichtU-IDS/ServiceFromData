@@ -1,4 +1,4 @@
-package org.amalic.servicefromdata;
+package org.semanticscience.d2s.api;
 
 import java.util.logging.Logger;
 

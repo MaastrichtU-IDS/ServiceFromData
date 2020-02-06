@@ -1,4 +1,4 @@
-package org.amalic.servicefromdata.repository;
+package org.semanticscience.d2s.api.repository;
 
 import java.io.OutputStream;
 import java.util.Arrays;

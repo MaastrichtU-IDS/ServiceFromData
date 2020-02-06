@@ -1,4 +1,4 @@
-package org.amalic.servicefromdata.service;
+package org.semanticscience.d2s.api.service;
 
 public class AbstractQueryBuilder {
 	public static final Long LIMIT = 1000L;
