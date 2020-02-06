@@ -49,6 +49,17 @@
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
+					<!-- "no main manifest attribute" issue
+					<configuration>
+						<mainClass>org.amalic.servicefromdata.Application</mainClass>
+					</configuration> -->
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>

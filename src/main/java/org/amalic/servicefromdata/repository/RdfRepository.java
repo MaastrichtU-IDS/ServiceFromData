@@ -51,6 +51,7 @@ public class RdfRepository {
 		}
 	}
 
+	// Get ENDPOINT environment variable here
 	public SPARQLRepository getRepo() {
 		if (repo == null) {
 			String endpoint = System.getenv("ENDPOINT");

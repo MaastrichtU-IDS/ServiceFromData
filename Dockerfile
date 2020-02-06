@@ -7,11 +7,14 @@ COPY pom.xml .
 RUN mvn verify clean --fail-never
 ## build from source
 COPY src/ ./src/
-RUN mvn package 
+RUN mvn package spring-boot:repackage
 
 # stage-1 for execution
 FROM openjdk:8-jre-slim
 WORKDIR /app
 COPY --from=0 /tmp/target/ServiceFromData-*.jar /app/ServiceFromData.jar
 ENTRYPOINT ["java","-jar","ServiceFromData.jar"]
+
+# ENTRYPOINT ["java","-jar","ServiceFromData.jar", "org.amalic.servicefromdata.Application"]
+
 EXPOSE 8080
