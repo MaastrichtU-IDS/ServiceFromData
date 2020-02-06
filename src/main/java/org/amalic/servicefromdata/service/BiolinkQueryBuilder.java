@@ -22,7 +22,7 @@ public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 		+ "PREFIX obo: <http://purl.obolibrary.org/obo/>\n"
 		+ "PREFIX ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#>\n"
 		+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-		+ "PREFIX schema: <http://schema.org/";
+		+ "PREFIX schema: <http://schema.org/>\n";
 
 	public static String datasets() {
 		return PREFIXES 

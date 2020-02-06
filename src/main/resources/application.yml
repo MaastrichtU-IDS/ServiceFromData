@@ -3,7 +3,7 @@ default:
 logging:
   level:
     org:
-      amalic: INFO
+      semanticscience: INFO
       springframework: ERROR
 server:
   port: 8080
