@@ -22,16 +22,7 @@ http://localhost/v2/api-docs
 
 ## Development
 
-Build
-
 ```bash
 mvn clean install
 ```
 
-Run
-
-```bash
-java -jar target/ServiceFromData.jar
-```
-
-> Access on http://localhost:8080
