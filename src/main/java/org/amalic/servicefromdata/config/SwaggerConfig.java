@@ -3,6 +3,7 @@ package org.semanticscience.d2s.api.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -27,13 +28,21 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 			.apiInfo(new ApiInfoBuilder()
 				.title("Data2Services API")
 				.contact(new Contact(
-					"Vincent Emonet"
-					, "https://github.com/MaastrichtU-IDS/d2s-api"
+					"Institute of Data Science"
+					, "https://d2s.semanticscience.org"
 					, "vincent.emonet@maastrichtuniversity.nl"))
 				.license("MIT license")
 				.licenseUrl("https://opensource.org/licenses/MIT")
 				.build());
 	}
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		// Redirect /ui to /swagger-ui.html
+		registry.addRedirectViewController("/ui", "/swagger-ui.html");
+		registry.addRedirectViewController("/ui/", "/swagger-ui.html");
+	}
+
 
 	@Override
 	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
