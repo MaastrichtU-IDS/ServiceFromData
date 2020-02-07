@@ -29,7 +29,19 @@ http://localhost/v2/api-docs
 
 ## Development
 
+Change the default endpoint in [src/main/resources/application.yml](https://github.com/MaastrichtU-IDS/d2s-api/blob/master/src/main/resources/application.yml#L2)
+
+Use the convenience script
+
 ```bash
-mvn package spring-boot:repackage
+./restart_local.sh
 ```
 
+Or manually
+
+```bash
+# Build
+mvn package spring-boot:repackage
+# Run
+java -jar target/d2s-api-0.9.0.jar
+```

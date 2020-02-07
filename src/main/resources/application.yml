@@ -1,5 +1,6 @@
 default:
-  endpoint: http://graphdb.dumontierlab.com/repositories/ncats-red-kg
+  # endpoint: http://graphdb.dumontierlab.com/repositories/ncats-red-kg
+  endpoint: http://localhost:7200/repositories/test
 logging:
   level:
     org:
