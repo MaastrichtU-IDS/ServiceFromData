@@ -26,7 +26,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 			.apis(RequestHandlerSelectors.basePackage("org.semanticscience.d2s.api.service"))
 			.build()
 			.apiInfo(new ApiInfoBuilder()
-				.title("Data2Services API")
+				.title("Translator Red Knowledge API")
 				.contact(new Contact(
 					"Institute of Data Science"
 					, "https://d2s.semanticscience.org"
