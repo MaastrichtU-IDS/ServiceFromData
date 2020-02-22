@@ -8,17 +8,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.semanticscience.d2s.api.repository.RdfRepository;
 import org.semanticscience.d2s.api.repository.ResultAs;
+import org.semanticscience.d2s.api.model.ReasonerQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/biolink/v1")
+@Api(description = "API to query the TReK BioLink dataset.")
 public class BiolinkService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(BiolinkService.class.getName());
@@ -39,7 +45,7 @@ public class BiolinkService {
 	    , produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
     @ApiOperation(value="This all classes for this particular data-set with instances having an id.")
     public void classes(HttpServletRequest request, HttpServletResponse response
-    		, @PathVariable String dataset
+    		, @ApiParam("Id of the dataset to query.") @PathVariable String dataset
     		) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.classes(dataset), request, response);
     }
@@ -49,8 +55,8 @@ public class BiolinkService {
     	, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
     @ApiOperation(value="Returns all instances of a class. Default and maximum limit is 1000 instances per page. Use page parameter to load more.")
     public void datasetClass(HttpServletRequest request, HttpServletResponse response
-    		, @PathVariable String dataset
-    		, @PathVariable("class") String className
+    		, @ApiParam("Id of the dataset to query.") @PathVariable String dataset
+    		, @ApiParam("Class to retrieve informations about.") @PathVariable("class") String className
     		, @RequestParam(required=false) Long page
     		, @RequestParam(required=false) Long limit
      		) throws IOException {
@@ -62,21 +68,24 @@ public class BiolinkService {
     	, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
     @ApiOperation(value="Loads all properties of a specific instance.")
     public void datasetClassId(HttpServletRequest request, HttpServletResponse response
-    		, @PathVariable String dataset
-    		, @PathVariable("class") String className
-    		, @PathVariable String id
+    		, @ApiParam("Id of the dataset to query.") @PathVariable String dataset
+    		, @ApiParam("Class of the concept to retrieve.") @PathVariable("class") String className
+    		, @ApiParam("Id of the concept to retrieve.") @PathVariable String id
     		) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.datasetClassId(dataset, className, id), request, response);
 	}
 	
-	// @RequestMapping(value = "/query"
-    // 	, method = RequestMethod.POST
-    // 	, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
-    // @ApiOperation(value="Execute a Reasoner API compliant query.")
-    // public void datasetClassId(
-	// 		HttpServletRequest request, HttpServletResponse response
-    // 		) throws IOException {
-    // 	repository.handleApiCall(ReasonerQueryBuilder.processQuery(query), request, response);
-	// }
+	@RequestMapping(value = "/reasoner/query"
+    	, method = RequestMethod.POST
+    	, produces = {ResultAs.CONTENT_TYPE_JSON})
+    @ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.")
+    public ReasonerQuery reasonerQueryCall(
+			// HttpServletRequest request, HttpServletResponse response,
+			@ApiParam("Reasoner API query to execute.")
+				@RequestBody @Valid ReasonerQuery reasonerQuery
+    		) throws IOException {
+		return reasonerQuery;
+    	// repository.handleApiCall(ReasonerQueryBuilder.processQuery(query), request, response);
+	}
     
 }
