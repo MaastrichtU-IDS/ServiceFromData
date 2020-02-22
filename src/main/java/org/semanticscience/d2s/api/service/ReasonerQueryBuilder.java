@@ -1,6 +1,6 @@
 package org.semanticscience.d2s.api.service;
 
-public class BiolinkQueryBuilder extends AbstractQueryBuilder {
+public class ReasonerQueryBuilder extends AbstractQueryBuilder {
 
 	public static String datasets() {
 		return PREFIXES 
