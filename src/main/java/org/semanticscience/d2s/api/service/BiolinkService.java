@@ -34,7 +34,7 @@ public class BiolinkService {
     	repository.handleApiCall(BiolinkQueryBuilder.datasets(), request, response);
     }
     
-    @RequestMapping(value = "/query/{dataset}"
+    @RequestMapping(value = "/get/{dataset}"
 	    , method = RequestMethod.GET
 	    , produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
     @ApiOperation(value="This all classes for this particular data-set with instances having an id.")
@@ -44,7 +44,7 @@ public class BiolinkService {
     	repository.handleApiCall(BiolinkQueryBuilder.classes(dataset), request, response);
     }
     
-    @RequestMapping(value = "/query/{dataset}/{class}"
+    @RequestMapping(value = "/get/{dataset}/{class}"
     	, method = RequestMethod.GET
     	, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
     @ApiOperation(value="Returns all instances of a class. Default and maximum limit is 1000 instances per page. Use page parameter to load more.")
@@ -56,8 +56,8 @@ public class BiolinkService {
      		) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.datasetClass(dataset, className, page, limit), request, response);
     }
-    
-    @RequestMapping(value = "/query/{dataset}/{class}/{id}"
+	
+	@RequestMapping(value = "/get/{dataset}/{class}/{id}"
     	, method = RequestMethod.GET
     	, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
     @ApiOperation(value="Loads all properties of a specific instance.")
@@ -67,6 +67,16 @@ public class BiolinkService {
     		, @PathVariable String id
     		) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.datasetClassId(dataset, className, id), request, response);
-    }
+	}
+	
+	// @RequestMapping(value = "/query"
+    // 	, method = RequestMethod.POST
+    // 	, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
+    // @ApiOperation(value="Execute a Reasoner API compliant query.")
+    // public void datasetClassId(
+	// 		HttpServletRequest request, HttpServletResponse response
+    // 		) throws IOException {
+    // 	repository.handleApiCall(ReasonerQueryBuilder.processQuery(query), request, response);
+	// }
     
 }

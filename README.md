@@ -37,6 +37,8 @@ Use the convenience script
 ./restart_local.sh
 ```
 
+> Access at http://localhost:8080
+
 Or manually
 
 ```bash
