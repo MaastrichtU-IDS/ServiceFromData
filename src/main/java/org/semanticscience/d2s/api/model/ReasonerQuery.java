@@ -1,17 +1,13 @@
 package org.semanticscience.d2s.api.model;
 
-// import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
-//import javax.persistence.Entity;
-// import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-// @ApiModel (description = "Reasoner API query model.")
-// @Entity
+// https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apimodel
 @ApiModel(
-	value = "ReasonerQuery",
+	value = "Reasoner API Query",
 	description = "Reasoner API specifications query model."
 )
 public class ReasonerQuery {
@@ -38,5 +34,4 @@ public class ReasonerQuery {
 		return max_results;
 	}
 
-    // … Constructor, getters, setters, ...
 }

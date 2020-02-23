@@ -34,9 +34,9 @@ public class ReasonerService {
 		notes="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
     public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
-			// @ApiParam(value = "Reasoner API query to execute.",
-			// 	required = true,
-			// 	example = "{ 'message' : 'tessst'")
+			@ApiParam(value = "Reasoner API query to execute.",
+				name = "Reasoner API query",
+				required = true)
 			@RequestBody @Valid ReasonerQuery reasonerQuery
     		) throws IOException {
 		return reasonerQuery;
