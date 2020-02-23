@@ -1,20 +1,27 @@
 package org.semanticscience.d2s.api.model;
 
-import javax.persistence.Entity;
+// import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import io.swagger.annotations.Api;
+
+//import javax.persistence.Entity;
+// import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 // @ApiModel (description = "Reasoner API query model.")
-// @Api
-@Entity
+// @Entity
+@ApiModel(
+	value = "ReasonerQuery",
+	description = "Reasoner API query model."
+)
 public class ReasonerQuery {
 	
-	// @ApiModelProperty(notes = "Query message", 
-	// 	example = "node9", required = true, position = 0)
-	// @ApiModelProperty(example = "node9", required = true)
-	@NotNull(message = "Message cannot be null")
+	// http://springfox.github.io/springfox/docs/current/#q27
+	// @NotNull(message = "Message cannot be null")
+	// ApiModelProperty don't work. The ReasonerQuery object is well recognized
+	// But not a single care is given to ApiModelProperty, litteraly useless.
+	// Only a misleading description can be passed to he ApiModel.
+	@ApiModelProperty(value = "node9", notes = "Query message", required = true)
 	private String message;
 	
 	// @ApiModelProperty(notes = "Maximum number of results returned by the query.", 

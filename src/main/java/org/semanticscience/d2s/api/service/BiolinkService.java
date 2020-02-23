@@ -78,10 +78,21 @@ public class BiolinkService {
 	@RequestMapping(value = "/reasoner/query"
     	, method = RequestMethod.POST
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
-    @ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.")
+	@ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.",
+		notes="More informations to complete.")
+	// @ApiImplicitParams({
+	// 	@ApiImplicitParam(
+	// 		name = "contents",
+	// 		dataType = "CustomTypeFor2031",
+	// 		examples = @io.swagger.annotations.Example(
+	// 			value = {
+	// 				@ExampleProperty(value = "{'property': 'test'}", mediaType = "application/json")
+	// 			}))
     public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
-			@ApiParam("Reasoner API query to execute.")
+			@ApiParam(value = "Reasoner API query to execute.",
+				required = true,
+				example = "{ 'message' : 'test'")
 				@RequestBody @Valid ReasonerQuery reasonerQuery
     		) throws IOException {
 		return reasonerQuery;
