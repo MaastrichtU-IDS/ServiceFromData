@@ -79,7 +79,7 @@ public class BiolinkService {
     	, method = RequestMethod.POST
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
 	@ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.",
-		notes="See the Reasoner API specifications: https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class")
+		notes="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
     public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
 			// @ApiParam(value = "Reasoner API query to execute.",

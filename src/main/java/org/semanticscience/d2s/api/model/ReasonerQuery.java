@@ -15,8 +15,11 @@ import io.swagger.annotations.ApiModelProperty;
 	description = "Reasoner API specifications query model."
 )
 public class ReasonerQuery {
+	// public ReasonerQuery(String message, int max_results) {
+	// 	this.message = message;
+	// 	this.max_results = max_results;
+	// }
 	
-	// http://springfox.github.io/springfox/docs/current/#q27
 	// @NotNull(message = "Message cannot be null")
 	@ApiModelProperty(value = "Reasoner API query message",
 		example= "example message", required= true, position= 0)
