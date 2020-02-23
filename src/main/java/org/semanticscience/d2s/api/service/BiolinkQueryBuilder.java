@@ -4,9 +4,9 @@ public class BiolinkQueryBuilder extends AbstractQueryBuilder {
 
 	public static String datasets() {
 		return PREFIXES 
-				+ "SELECT ?dataset\n" 
+				+ "SELECT ?dataset ?graph ?label\n" 
 				+ "WHERE {\n" 
-				+ "  ?ds a dctypes:Dataset ;\n" 
+				+ "  ?ds a dctypes:Dataset ; dct:title ?label ;\n" 
 				+ "  idot:preferredPrefix ?dataset .\n" 
 				+ "  ?version dct:isVersionOf ?ds ;\n" 
 				+ "  dcat:distribution ?graph .\n"
