@@ -8,23 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.semanticscience.d2s.api.repository.RdfRepository;
 import org.semanticscience.d2s.api.repository.ResultAs;
-import org.semanticscience.d2s.api.model.ReasonerQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import javax.validation.Valid;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/biolink/v1")
-@Api(description = "API to query the TReK BioLink dataset.")
+@Api(tags = "Service API", 
+	description = "API to query the TReK BioLink dataset.")
 public class BiolinkService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(BiolinkService.class.getName());
@@ -81,22 +78,6 @@ public class BiolinkService {
     		, @ApiParam("Id of the concept to retrieve.") @PathVariable String id
     		) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.datasetClassId(dataset, className, id), request, response);
-	}
-	
-	@RequestMapping(value = "/reasoner/query"
-    	, method = RequestMethod.POST
-    	, produces = {ResultAs.CONTENT_TYPE_JSON})
-	@ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.",
-		notes="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
-    public ReasonerQuery reasonerQueryCall(
-			// HttpServletRequest request, HttpServletResponse response,
-			// @ApiParam(value = "Reasoner API query to execute.",
-			// 	required = true,
-			// 	example = "{ 'message' : 'tessst'")
-			@RequestBody @Valid ReasonerQuery reasonerQuery
-    		) throws IOException {
-		return reasonerQuery;
-    	// repository.handleApiCall(ReasonerQueryBuilder.processQuery(query), request, response);
 	}
     
 }

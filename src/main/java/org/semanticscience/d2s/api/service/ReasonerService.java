@@ -1,0 +1,46 @@
+package org.semanticscience.d2s.api.service;
+
+import java.io.IOException;
+import java.util.logging.Logger;
+
+import org.semanticscience.d2s.api.repository.RdfRepository;
+import org.semanticscience.d2s.api.repository.ResultAs;
+import org.semanticscience.d2s.api.model.ReasonerQuery;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@RestController
+@RequestMapping("/reasoner/v1")
+@Api(tags = "Reasoner API",
+	description = "Reasoner API to query the TReK BioLink dataset.")
+public class ReasonerService {
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ReasonerService.class.getName());
+    
+    @Autowired
+	private RdfRepository repository;
+	
+	@RequestMapping(value = "/query"
+    	, method = RequestMethod.POST
+    	, produces = {ResultAs.CONTENT_TYPE_JSON})
+	@ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.",
+		notes="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
+    public ReasonerQuery reasonerQueryCall(
+			// HttpServletRequest request, HttpServletResponse response,
+			// @ApiParam(value = "Reasoner API query to execute.",
+			// 	required = true,
+			// 	example = "{ 'message' : 'tessst'")
+			@RequestBody @Valid ReasonerQuery reasonerQuery
+    		) throws IOException {
+		return reasonerQuery;
+    	// repository.handleApiCall(ReasonerQueryBuilder.processQuery(query), request, response);
+	}
+    
+}
