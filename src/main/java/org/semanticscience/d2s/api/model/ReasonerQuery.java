@@ -12,22 +12,28 @@ import io.swagger.annotations.ApiModelProperty;
 // @Entity
 @ApiModel(
 	value = "ReasonerQuery",
-	description = "Reasoner API query model."
+	description = "Reasoner API specifications query model."
 )
 public class ReasonerQuery {
 	
 	// http://springfox.github.io/springfox/docs/current/#q27
 	// @NotNull(message = "Message cannot be null")
-	// ApiModelProperty don't work. The ReasonerQuery object is well recognized
-	// But not a single care is given to ApiModelProperty, litteraly useless.
-	// Only a misleading description can be passed to he ApiModel.
-	@ApiModelProperty(value = "node9", notes = "Query message", required = true)
+	@ApiModelProperty(value = "Reasoner API query message",
+		example= "example message", required= true, position= 0)
 	private String message;
+	public String getMessage() {
+		return message;
+	}
+	// public void setMessage(String message) {
+	// 	this.message = message;
+	// }
 	
-	// @ApiModelProperty(notes = "Maximum number of results returned by the query.", 
-	// 	example = "50", required = false, position = 1)
-	// @ApiModelProperty(example = "50", required = false)
-    private int max_results;
+	@ApiModelProperty(name = "max_results", value = "Maximum number of results returned by the query.", 
+		example = "50", required = false, position= 1)
+	private int max_results;
+	public int getmax_results() {
+		return max_results;
+	}
 
     // … Constructor, getters, setters, ...
 }
