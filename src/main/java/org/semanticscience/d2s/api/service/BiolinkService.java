@@ -31,11 +31,19 @@ public class BiolinkService {
     
     @Autowired
 	private RdfRepository repository;
-    
+	
+	@RequestMapping(value = "/prefixes"
+    	, method = RequestMethod.GET
+		, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
+    @ApiOperation(value="Returns all prefixes and their namespace URI used by the API.")
+    public void prefixes(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	repository.handleApiCall(BiolinkQueryBuilder.datasets(), request, response);
+    }
+
     @RequestMapping(value = "/datasets"
     	, method = RequestMethod.GET
 		, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
-    @ApiOperation(value="This api call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.")
+    @ApiOperation(value="This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.")
     public void datasets(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.datasets(), request, response);
     }
