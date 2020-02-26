@@ -17,8 +17,8 @@ public class QueryGraph {
 	// }
 	
 	// @NotNull(message = "Message cannot be null")
-	@ApiModelProperty(value = "Reasoner API query message",
-		example= "example message", required= true, position= 0)
+	@ApiModelProperty(value = "Nodes to query",
+		example= "example node", required= false, position= 0)
 	private String nodes;
 		public String getNodes() {
 			return nodes;
@@ -27,11 +27,11 @@ public class QueryGraph {
 	// 	this.message = message;
 	// }
 	
-	@ApiModelProperty(name = "max_results", value = "Maximum number of results returned by the query.", 
+	@ApiModelProperty(value = "Edges to query.", 
 		example = "50", required = false, position= 1)
-	private int max_resultse;
-	public int getMax_resultse() {
-		return max_resultse;
+	private int edges;
+	public int getEdges() {
+		return edges;
 	}
 
 }

@@ -20,11 +20,11 @@ public class Message {
 	
 	// @NotNull(message = "Message cannot be null")
 	@ApiModelProperty(value = "Reasoner API query graph",
-		example= "example graph", required= true, position= 0)
+		example= "example query graph", required= true, position= 0)
 	private QueryGraph query_graph;
-		public QueryGraph getQuery_graph() {
-			return query_graph;
-		}
+	public QueryGraph getQuery_graph() {
+		return query_graph;
+	}
 	// public void setMessage(String message) {
 	// 	this.message = message;
 	// }
