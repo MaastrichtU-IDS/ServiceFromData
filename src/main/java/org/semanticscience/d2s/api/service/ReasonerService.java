@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+
 import javax.validation.Valid;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/reasoner/v1")
-@Api(tags = "Reasoner API",
-	description = "Reasoner API to query the TReK BioLink dataset.")
+//@Info(tags = "Reasoner API",
+//	description = "Reasoner API to query the TReK BioLink dataset.")
 public class ReasonerService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ReasonerService.class.getName());
@@ -31,11 +32,11 @@ public class ReasonerService {
 	@RequestMapping(value = "/query"
     	, method = RequestMethod.POST
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
-	@ApiOperation(value="Execute a Reasoner API query on the BioLink-compliant triplestore.",
-		notes="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
+	@Operation(summary="Execute a Reasoner API query on the BioLink-compliant triplestore.",
+		description="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
     public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value = "Reasoner API query to execute.",
+			@Parameter(description = "Reasoner API query to execute.",
 				name = "Reasoner API query",
 				required = true)
 			@RequestBody @Valid ReasonerQuery reasonerQuery

@@ -1,12 +1,10 @@
 package org.semanticscience.d2s.api.model;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
-// https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apimodel
-@ApiModel(
-	value = "Reasoner API Query",
-	description = "Reasoner API specifications query model."
+@ApiResponse( 
+	description = "Top level Reasoner API Query, containing a message"
 )
 public class ReasonerQuery {
 	// public ReasonerQuery(String message, int max_results) {
@@ -15,8 +13,9 @@ public class ReasonerQuery {
 	// }
 	
 	// @NotNull(message = "Message cannot be null")
-	@ApiModelProperty(value = "Reasoner API query message",
-		example= "example message", required= true, position= 0)
+	@Parameter(name = "Reasoner API query message",
+			description = "Query message for the Reasoner API, containing a query_graph.",
+			example= "example message", required= true)
 	// message in http://transltr.io:7071/apidocs/#/default/post_validate_query
 	// but "query_message" in https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-query-class
 	private Message message;
@@ -27,50 +26,57 @@ public class ReasonerQuery {
 	// 	this.message = message;
 	// }
 	
-	@ApiModelProperty(name = "max_results", value = "Maximum number of results returned by the query.", 
-		example = "50", required = false, position= 1)
+	@Parameter(name = "max_results", 
+			description  = "Maximum number of results returned by the query.", 
+			example = "50", required = false)
 	private int max_results;
 	public int getMax_results() {
 		return max_results;
 	}
 
-	@ApiModelProperty(name = "page_size", value = "Split the results into pages with this number of results each.", 
-		example = "20", required = false, position= 1)
+	@Parameter(name = "page_size", 
+			description = "Split the results into pages with this number of results each.", 
+			example = "20", required = false)
 	private int page_size;
 	public int getPage_size() {
 		return page_size;
 	}
 
-	@ApiModelProperty(name = "page_number", value = "Page number of results when the number of results exceeds the page_size.", 
-		example = "20", required = false, position= 1)
+	@Parameter(name = "page_number", 
+			description = "Page number of results when the number of results exceeds the page_size.", 
+			example = "20", required = false)
 	private int page_number;
 	public int getPage_number() {
 		return page_number;
 	}
 
-	@ApiModelProperty(name = "bypass_cache", value = "Set to true in order to bypass any possible cached message and try to answer the query over again.", 
-		example = "true", required = false, position= 1)
+	@Parameter(name = "bypass_cache", 
+			description = "Set to true in order to bypass any possible cached message and try to answer the query over again.", 
+			example = "true", required = false)
 	private Boolean bypass_cache;
 	public Boolean getBypass_cache() {
 		return bypass_cache;
 	}
 
-	@ApiModelProperty(name = "asynchronous", value = "Set to true in order to receive an incomplete message_id if the query will take a while. Client can then periodically request that message_id for a status update and eventual complete message.", 
-		example = "false", required = false, position= 1)
+	@Parameter(name = "asynchronous",
+			description = "Set to true in order to receive an incomplete message_id if the query will take a while. Client can then periodically request that message_id for a status update and eventual complete message.", 
+			example = "false", required = false)
 	private Boolean asynchronous;
 	public Boolean getAsynchronous() {
 		return asynchronous;
 	}
 
-	@ApiModelProperty(name = "reasoner_ids", value = "List of reasoners to consult for the query (e.g.: [ trek, RTX, Robokop ])", 
-		example = "['trek']", required = false, position= 1)
+	@Parameter(name = "reasoner_ids",
+			description = "List of reasoners to consult for the query (e.g.: [ trek, RTX, Robokop ])", 
+			example = "['trek']", required = false)
 	private int reasoner_ids;
 	public int getReasoner_ids() {
 		return reasoner_ids;
 	}
 
-	@ApiModelProperty(name = "previous_message_processing_plan", value = "Container for one or more Message objects or identifiers for one or more Messages along with a processing plan for how those messages should be processed and returned.", 
-		example = "1", required = false, position= 1)
+	@Parameter(name = "previous_message_processing_plan", 
+			description = "Container for one or more Message objects or identifiers for one or more Messages along with a processing plan for how those messages should be processed and returned.", 
+			example = "1", required = false)
 	private int previous_message_processing_plan;
 	public int getPrevious_message_processing_plan() {
 		return previous_message_processing_plan;

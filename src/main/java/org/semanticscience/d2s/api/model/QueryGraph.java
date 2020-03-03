@@ -1,12 +1,10 @@
 package org.semanticscience.d2s.api.model;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
-// https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apimodel
-@ApiModel(
-	value = "Reasoner API Query Graph",
-	description = "A query graph containing nodes and edges."
+@ApiResponse( 
+	description = "Reasoner API Query Graph, containing nodes and edges"
 )
 public class QueryGraph {
 	// public ReasonerQuery(String message, int max_results) {
@@ -15,8 +13,8 @@ public class QueryGraph {
 	// }
 	
 	// @NotNull(message = "Message cannot be null")
-	@ApiModelProperty(value = "Nodes to query",
-		example= "example node", required= false, position= 0)
+	@Parameter(name = "Nodes to query",
+		example= "example node", required= false)
 	private String nodes;
 		public String getNodes() {
 			return nodes;
@@ -25,8 +23,8 @@ public class QueryGraph {
 	// 	this.message = message;
 	// }
 	
-	@ApiModelProperty(value = "Edges to query.", 
-		example = "50", required = false, position= 1)
+	@Parameter(name = "Edges to query.", 
+		example = "50", required = false)
 	private int edges;
 	public int getEdges() {
 		return edges;

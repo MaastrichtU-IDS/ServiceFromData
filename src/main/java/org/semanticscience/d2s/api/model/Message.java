@@ -2,12 +2,11 @@ package org.semanticscience.d2s.api.model;
 
 import org.semanticscience.d2s.api.model.QueryGraph;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 // https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apimodel
-@ApiModel(
-	value = "Reasoner API Message",
+@ApiResponse( 
 	description = "A message containing the query to the Reasoner API."
 )
 public class Message {
@@ -17,8 +16,13 @@ public class Message {
 	// }
 	
 	// @NotNull(message = "Message cannot be null")
-	@ApiModelProperty(value = "Reasoner API query graph",
-		example= "example query graph", required= true, position= 0)
+	//@ApiModelProperty(value = "Reasoner API query graph",
+	//	example= "example query graph", required= true, position= 0)
+	
+	// See http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Parameter.html
+	@Parameter(name = "Reasoner API query graph", 
+			description = "A message containing the query to the Reasoner API.",
+			required = true)
 	private QueryGraph query_graph;
 	public QueryGraph getQuery_graph() {
 		return query_graph;
@@ -27,8 +31,9 @@ public class Message {
 	// 	this.message = message;
 	// }
 	
-	@ApiModelProperty(name = "max_results", value = "Maximum number of results returned by the query.", 
-		example = "50", required = false, position= 1)
+	@Parameter(name = "max_results", 
+			description = "Maximum number of results returned by the query.", 
+			example = "50", required = false)
 	private int max_resultse;
 	public int getMax_resultse() {
 		return max_resultse;

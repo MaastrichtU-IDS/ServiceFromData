@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 //import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
+@OpenAPIDefinition(
+		info = @Info(title = "Translator Red Knowledge API", 
+			description = "Reasoner API for RDF triplestore.",
+			termsOfService = "https://opensource.org/licenses/MIT",
+			version = "1.0")
+	)
 @SpringBootApplication
 //@EnableSwagger2WebMvc
 @RestController
