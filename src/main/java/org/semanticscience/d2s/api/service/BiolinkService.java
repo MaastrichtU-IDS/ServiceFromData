@@ -82,7 +82,7 @@ public class BiolinkService {
 		}
     )
     public void classes(HttpServletRequest request, HttpServletResponse response
-    		, @Parameter(name = "Id of the dataset to query.") @PathVariable("dataset") String dataset
+    		, @PathVariable String dataset
     		) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.classes(dataset), request, response);
     }
