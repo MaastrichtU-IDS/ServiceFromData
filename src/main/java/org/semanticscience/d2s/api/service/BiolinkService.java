@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/biolink/v1")
-//@(tags = "Service API", 
-//	description = "API to query the TReK BioLink dataset.")
+@Tag(name = "Explore datasets", description = "Services to explore the TReK BioLink datasets classes and concepts.")
 public class BiolinkService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(BiolinkService.class.getName());
@@ -30,6 +30,7 @@ public class BiolinkService {
 	@Autowired
 	private RdfRepository repository;
 
+	// https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/
 	// http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Operation.html
 	@RequestMapping(value = "/prefixes", 
 		method = RequestMethod.GET 

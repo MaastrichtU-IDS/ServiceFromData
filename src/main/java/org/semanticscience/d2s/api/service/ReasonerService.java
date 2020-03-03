@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import javax.validation.Valid;
 
 
 @RestController
 @RequestMapping("/reasoner/v1")
-//@Info(tags = "Reasoner API",
-//	description = "Reasoner API to query the TReK BioLink dataset.")
+@Tag(name = "Reasoner API", description = "Query TReK BioLink-compliant datasets using the Reasoner API.")
 public class ReasonerService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ReasonerService.class.getName());
