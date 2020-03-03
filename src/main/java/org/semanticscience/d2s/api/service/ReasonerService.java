@@ -48,8 +48,8 @@ public class ReasonerService {
                     	@ArraySchema(schema = @Schema(implementation = ReasonerQuery.class)))) })	
     public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
-			@Parameter(description = "Reasoner API query to execute.",
-				name = "Reasoner API query",
+			@Parameter(description = "Reasoner API query to execute.", 
+				schema=@Schema(implementation = ReasonerQuery.class),
 				required = true)
 			@RequestBody @Valid ReasonerQuery reasonerQuery
     		) throws IOException {
