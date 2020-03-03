@@ -21,7 +21,8 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/reasoner/v1")
-@Tag(name = "Reasoner API", description = "Query TReK BioLink-compliant datasets using the Reasoner API.")
+@Tag(name = "Reasoner API", 
+	description = "Query TReK BioLink-compliant datasets using the Reasoner API.")
 public class ReasonerService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ReasonerService.class.getName());
