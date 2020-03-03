@@ -41,12 +41,6 @@
 		    <version>1.1.44</version>
 		    <scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-bean-validators</artifactId>
-			<version>${springfox.version}</version>
-			<scope>compile</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -67,22 +61,27 @@
 						</execution>
 					</executions>
 				</plugin>
+				<plugin>
+                     <groupId>org.springdoc</groupId>
+                     <artifactId>springdoc-openapi-maven-plugin</artifactId>
+                     <version>0.2</version>
+                     <executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+                     <configuration>
+                         <apiDocsUrl>http://localhost:8080/api-docs</apiDocsUrl>
+                         <outputFileName>openapi.json</outputFileName>
+                         <outputDir>${project.build.directory}</outputDir>
+                     </configuration>
+                 </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-releases</id>
-			<url>https://repo.spring.io/libs-release</url>
-		</repository>
-	</repositories>
 	
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-releases</id>
-			<url>https://repo.spring.io/libs-release</url>
-		</pluginRepository>
-	</pluginRepositories>
 	
 </project>
