@@ -1,11 +1,8 @@
 package org.semanticscience.d2s.api.model;
 
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiResponse( 
-	description = "Top level Reasoner API Query, containing a message"
-)
+@Schema(description = "Top level Reasoner API Query, contains a message with a query_graph.")
 public class ReasonerQuery {
 	// public ReasonerQuery(String message, int max_results) {
 	// 	this.message = message;
@@ -13,9 +10,8 @@ public class ReasonerQuery {
 	// }
 	
 	// @NotNull(message = "Message cannot be null")
-	@Parameter(name = "Reasoner API query message",
-			description = "Query message for the Reasoner API, containing a query_graph.",
-			example= "example message", required= true)
+	@Schema(description = "Query message for the Reasoner API, containing a query_graph.",
+			required= true)
 	// message in http://transltr.io:7071/apidocs/#/default/post_validate_query
 	// but "query_message" in https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-query-class
 	private Message message;
@@ -26,7 +22,7 @@ public class ReasonerQuery {
 	// 	this.message = message;
 	// }
 	
-	@Parameter(name = "max_results", 
+	@Schema(name = "max_results", 
 			description  = "Maximum number of results returned by the query.", 
 			example = "50", required = false)
 	private int max_results;
@@ -34,7 +30,7 @@ public class ReasonerQuery {
 		return max_results;
 	}
 
-	@Parameter(name = "page_size", 
+	@Schema(name = "page_size", 
 			description = "Split the results into pages with this number of results each.", 
 			example = "20", required = false)
 	private int page_size;
@@ -42,7 +38,7 @@ public class ReasonerQuery {
 		return page_size;
 	}
 
-	@Parameter(name = "page_number", 
+	@Schema(name = "page_number", 
 			description = "Page number of results when the number of results exceeds the page_size.", 
 			example = "20", required = false)
 	private int page_number;
@@ -50,7 +46,7 @@ public class ReasonerQuery {
 		return page_number;
 	}
 
-	@Parameter(name = "bypass_cache", 
+	@Schema(name = "bypass_cache", 
 			description = "Set to true in order to bypass any possible cached message and try to answer the query over again.", 
 			example = "true", required = false)
 	private Boolean bypass_cache;
@@ -58,7 +54,7 @@ public class ReasonerQuery {
 		return bypass_cache;
 	}
 
-	@Parameter(name = "asynchronous",
+	@Schema(name = "asynchronous",
 			description = "Set to true in order to receive an incomplete message_id if the query will take a while. Client can then periodically request that message_id for a status update and eventual complete message.", 
 			example = "false", required = false)
 	private Boolean asynchronous;
@@ -66,7 +62,7 @@ public class ReasonerQuery {
 		return asynchronous;
 	}
 
-	@Parameter(name = "reasoner_ids",
+	@Schema(name = "reasoner_ids",
 			description = "List of reasoners to consult for the query (e.g.: [ trek, RTX, Robokop ])", 
 			example = "['trek']", required = false)
 	private int reasoner_ids;
@@ -74,7 +70,7 @@ public class ReasonerQuery {
 		return reasoner_ids;
 	}
 
-	@Parameter(name = "previous_message_processing_plan", 
+	@Schema(name = "previous_message_processing_plan", 
 			description = "Container for one or more Message objects or identifiers for one or more Messages along with a processing plan for how those messages should be processed and returned.", 
 			example = "1", required = false)
 	private int previous_message_processing_plan;
