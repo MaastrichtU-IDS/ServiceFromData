@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 //import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 
 @OpenAPIDefinition(
 		info = @Info(title = "Translator Red Knowledge API", 
 			description = "Reasoner API for RDF triplestore.",
 			termsOfService = "https://opensource.org/licenses/MIT",
-			version = "1.0")
+			version = "1.0",
+			contact = @Contact(name = "Institute of Data Science at Maastricht University",
+					email = "vincent.emonet@maastrichtuniversity.nl",
+					url = "https://d2s.semanticscience.org"))
 	)
 @SpringBootApplication
 //@EnableSwagger2WebMvc
@@ -33,7 +37,7 @@ public class Application {
     @RequestMapping("/")
     public void getDefault(HttpServletResponse response) {
     	try {
-    		response.sendRedirect("/swagger-ui.html");
+    		response.sendRedirect("/swagger-ui");
     	} catch (Exception e) {
     		logger.severe("Error: " + ExceptionUtils.getFullStackTrace(e));
     	}

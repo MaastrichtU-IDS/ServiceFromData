@@ -31,6 +31,7 @@ public class ReasonerService {
 	
 	@RequestMapping(value = "/query"
     	, method = RequestMethod.POST
+    	, consumes = {ResultAs.CONTENT_TYPE_JSON}
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
 	@Operation(summary="Execute a Reasoner API query on the BioLink-compliant triplestore.",
 		description="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
