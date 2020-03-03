@@ -32,18 +32,21 @@ public class BiolinkService {
 
 	// http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Operation.html
 	@RequestMapping(value = "/prefixes", 
-			method = RequestMethod.GET, 
-			produces = { ResultAs.CONTENT_TYPE_XML,ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV }
+		method = RequestMethod.GET 
+		//, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
 	)
-	@Operation(summary = "Returns all prefixes and their namespace URI used by the API.")
+	@Operation(summary = "Returns all prefixes and their namespace URI used by the API.", 
+		responses = {
+			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
+					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
+					@Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
+					@Content(mediaType = ResultAs.CONTENT_TYPE_XML) }) })
 	public void prefixes(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		repository.handleApiCall(BiolinkQueryBuilder.datasets(), request, response);
 	}
 
 	@RequestMapping(value = "/datasets", 
-			method = RequestMethod.GET
-			//, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
-	)
+			method = RequestMethod.GET )
 	@Operation(summary = "This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.", 
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
