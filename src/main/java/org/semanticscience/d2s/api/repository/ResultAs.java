@@ -18,7 +18,7 @@ public enum ResultAs {
 	public final static String CONTENT_TYPE_XML = "application/xml";
 	public final static String CONTENT_TYPE_JSON = "application/json";
 	public final static String CONTENT_TYPE_CSV = "text/csv";
-	public final static String CONTENT_TYPE_TSV = "text/tab-seperated-values";
+	public final static String CONTENT_TYPE_TSV = "text/tab-separated-values";
 	
 	private final static String[] CONTENT_TYPES = new String[]{
 			CONTENT_TYPE_XML, CONTENT_TYPE_JSON, CONTENT_TYPE_CSV, CONTENT_TYPE_TSV};

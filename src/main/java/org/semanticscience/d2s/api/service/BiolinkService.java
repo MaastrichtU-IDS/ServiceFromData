@@ -45,7 +45,19 @@ public class BiolinkService {
 		//, consumes = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
 		//, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
     	)
-    @Operation(summary="This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.")
+    @Operation(summary="This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.",
+		responses = {
+	      @ApiResponse(description = "Successful Operation", 
+    		  responseCode = "200", 
+				  content = { 
+						  @Content(mediaType = ResultAs.CONTENT_TYPE_TSV),
+						  @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
+						  @Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
+						  @Content(mediaType = ResultAs.CONTENT_TYPE_XML)
+		         	  }
+	      )
+		}
+	  )
     public void datasets(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	repository.handleApiCall(BiolinkQueryBuilder.datasets(), request, response);
     }
@@ -56,14 +68,18 @@ public class BiolinkService {
 	    //, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
     )
     @Operation(summary="This all classes for this particular data-set with instances having an id.",
-    		responses = {
-			      @ApiResponse(description = "Successful Operation", 
-			    		  responseCode = "200", 
-			    		  content = @Content(mediaType = "application/json"
-			    		  	//, schema = @Schema(implementation = String.class)
-			    		  )
-			      )
-    		}
+		responses = {
+	      @ApiResponse(description = "Successful Operation", 
+    		  responseCode = "200", 
+    		  content = { 
+				  @Content(mediaType = ResultAs.CONTENT_TYPE_TSV),
+				  @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
+				  @Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
+				  @Content(mediaType = ResultAs.CONTENT_TYPE_XML)
+         	  }
+		  	  //, schema = @Schema(implementation = String.class)
+	      )
+		}
     )
     public void classes(HttpServletRequest request, HttpServletResponse response
     		, @Parameter(name = "Id of the dataset to query.") @PathVariable("dataset") String dataset
