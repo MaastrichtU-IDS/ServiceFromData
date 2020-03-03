@@ -34,8 +34,8 @@ public class BiolinkService {
 	// https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/
 	// http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Operation.html
 	@RequestMapping(value = "/prefixes", 
-		method = RequestMethod.GET 
-		//, produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
+		method = RequestMethod.GET, 
+		produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
 	)
 	@Operation(summary = "Returns all prefixes and their namespace URI used by the API.", 
 		responses = {
@@ -48,7 +48,8 @@ public class BiolinkService {
 	}
 
 	@RequestMapping(value = "/datasets", 
-			method = RequestMethod.GET )
+			method = RequestMethod.GET,
+			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.", 
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
@@ -60,7 +61,8 @@ public class BiolinkService {
 	}
 
 	@RequestMapping(value = "/get/{dataset}", 
-			method = RequestMethod.GET)
+			method = RequestMethod.GET,
+			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "This all classes for this particular data-set with instances having an id.", 
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
@@ -73,7 +75,8 @@ public class BiolinkService {
 	}
 
 	@RequestMapping(value = "/get/{dataset}/{class}", 
-			method = RequestMethod.GET )
+			method = RequestMethod.GET,
+			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "Returns all instances of a class. Default and maximum limit is 1000 instances per page. Use page parameter to load more.", 
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
@@ -87,10 +90,9 @@ public class BiolinkService {
 		repository.handleApiCall(BiolinkQueryBuilder.datasetClass(dataset, className, page, limit), request, response);
 	}
 
-	@RequestMapping(value = "/get/{dataset}/{class}/{id}", method = RequestMethod.GET, consumes = {
-			ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV,
-			ResultAs.CONTENT_TYPE_TSV }, produces = { ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON,
-					ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV })
+	@RequestMapping(value = "/get/{dataset}/{class}/{id}", 
+			method = RequestMethod.GET,  
+			produces = { ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV })
 	@Operation(summary = "Loads all properties of a specific instance.", 
 			responses = {
 					@ApiResponse(description = "Successful Operation", responseCode = "200", content = {

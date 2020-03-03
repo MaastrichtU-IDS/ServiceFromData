@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 
@@ -36,6 +41,11 @@ public class ReasonerService {
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
 	@Operation(summary="Execute a Reasoner API query on the BioLink-compliant triplestore.",
 		description="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
+    @ApiResponses(value = {
+    		@ApiResponse(responseCode = "200", 
+    				description = "successful operation", 
+                    content = @Content(array = 
+                    	@ArraySchema(schema = @Schema(implementation = ReasonerQuery.class)))) })	
     public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
 			@Parameter(description = "Reasoner API query to execute.",
