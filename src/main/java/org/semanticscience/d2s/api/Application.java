@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.info.License;
 					+ "as a collaboration between the [Weng Lab](http://people.dbmi.columbia.edu/~chw7007/), [Tatonetti Lab](http://tatonettilab.org/), and the [NCATS Biomedical Data Translator program](https://ncats.nih.gov/translator) (Red Team).\n\n"
 					+ "This work was supported in part by grants: NCATS OT3TR002027, NLM R01LM009886-08A1, and NIGMS R01GM107145.\n\n" + 
 					"The following external resources may be useful:\n" + 
+					"* [Reasoner API Specifications YAML file](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/blob/master/API/TranslatorReasonersAPI.yaml#L295)\n" +
 					"* [OHDSI](https://www.ohdsi.org/)\n" + 
 					"* [OMOP Common Data Model](https://github.com/OHDSI/CommonDataModel/wiki)\n" + 
 					"* [Athena](http://athena.ohdsi.org/) (OMOP vocabularies, search, concept relationships, concept hierarchy)\n" + 

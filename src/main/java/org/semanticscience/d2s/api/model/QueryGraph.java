@@ -14,9 +14,9 @@ public class QueryGraph {
 	
 	// @NotNull(message = "Message cannot be null")
 	@Parameter(name = "Nodes to query",
-		example= "example node", required= false)
-	private String nodes;
-		public String getNodes() {
+		required= false)
+	private Node nodes;
+		public Node getNodes() {
 			return nodes;
 		}
 	// public void setMessage(String message) {
@@ -24,7 +24,7 @@ public class QueryGraph {
 	// }
 	
 	@Parameter(name = "Edges to query.", 
-		example = "50", required = false)
+		required = false)
 	private int edges;
 	public int getEdges() {
 		return edges;
