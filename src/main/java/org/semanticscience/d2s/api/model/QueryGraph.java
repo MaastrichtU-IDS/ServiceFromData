@@ -1,7 +1,5 @@
 package org.semanticscience.d2s.api.model;
 
-import javax.validation.constraints.NotNull;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
