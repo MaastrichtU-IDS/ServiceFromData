@@ -38,4 +38,46 @@ public class ReasonerQuery {
 		return max_results;
 	}
 
+	@ApiModelProperty(name = "page_size", value = "Split the results into pages with this number of results each.", 
+		example = "20", required = false, position= 1)
+	private int page_size;
+	public int getPage_size() {
+		return page_size;
+	}
+
+	@ApiModelProperty(name = "page_number", value = "Page number of results when the number of results exceeds the page_size.", 
+		example = "20", required = false, position= 1)
+	private int page_number;
+	public int getPage_number() {
+		return page_number;
+	}
+
+	@ApiModelProperty(name = "bypass_cache", value = "Set to true in order to bypass any possible cached message and try to answer the query over again.", 
+		example = "true", required = false, position= 1)
+	private Boolean bypass_cache;
+	public Boolean getBypass_cache() {
+		return bypass_cache;
+	}
+
+	@ApiModelProperty(name = "asynchronous", value = "Set to true in order to receive an incomplete message_id if the query will take a while. Client can then periodically request that message_id for a status update and eventual complete message.", 
+		example = "false", required = false, position= 1)
+	private Boolean asynchronous;
+	public Boolean getAsynchronous() {
+		return asynchronous;
+	}
+
+	@ApiModelProperty(name = "reasoner_ids", value = "List of reasoners to consult for the query (e.g.: [ trek, RTX, Robokop ])", 
+		example = "['trek']", required = false, position= 1)
+	private int reasoner_ids;
+	public int getReasoner_ids() {
+		return reasoner_ids;
+	}
+
+	@ApiModelProperty(name = "previous_message_processing_plan", value = "Container for one or more Message objects or identifiers for one or more Messages along with a processing plan for how those messages should be processed and returned.", 
+		example = "1", required = false, position= 1)
+	private int previous_message_processing_plan;
+	public int getPrevious_message_processing_plan() {
+		return previous_message_processing_plan;
+	}
+
 }
