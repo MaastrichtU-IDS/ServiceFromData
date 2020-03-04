@@ -5,11 +5,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema( 
 	description = "An edge in the query_graph linking two nodes"
 )
-public class Edge {
+public class QEdge {
 	
-	@Schema(description = "Local URI or identifier for this edge, which is unique within this" + 
-			" KnowledgeGraph, and perhaps within the source reasoner's knowledge" + 
-			" graph, e.g. https://w3id.org/biolink/cohd/association/1_8516_941473",
+	@Schema(description = "QueryGraph internal identifier for this QEdge. Recommended form: e00, e01, e02, etc.",
 		example= "e00", required= true)
 	private String id;
 	public String getId() {

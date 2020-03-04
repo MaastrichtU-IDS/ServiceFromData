@@ -2,22 +2,21 @@ package org.semanticscience.d2s.api.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema( 
-	description = "QueryGraph object that contains a serialization of a query in the form of a graph"
-)
+@Schema(description = "A graph intended to be the thought path to be followed by a reasoner to" + 
+	" answer the question. This graph is a representation of a question.")
 public class QueryGraph {
 	
-	@Schema(description = "Nodes to query",
+	@Schema(description = "List of nodes in the QueryGraph",
 		required= false)
-	private Node nodes;
-	public Node getNodes() {
+	private QNode nodes;
+	public QNode getNodes() {
 		return nodes;
 	}
 	
-	@Schema(description = "Edges to query.", 
+	@Schema(description = "List of edges in the QueryGraph", 
 		required = false)
-	private Edge edges;
-	public Edge getEdges() {
+	private QEdge edges;
+	public QEdge getEdges() {
 		return edges;
 	}
 

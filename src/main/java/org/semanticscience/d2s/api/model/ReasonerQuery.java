@@ -4,12 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Top level Reasoner API Query, contains a message with a query_graph.")
 public class ReasonerQuery {
-	// public ReasonerQuery(String message, int max_results) {
-	// 	this.message = message;
-	// 	this.max_results = max_results;
-	// }
 	
-	// @NotNull(message = "Message cannot be null")
 	@Schema(description = "Query message for the Reasoner API, containing a query_graph.",
 			required= true)
 	// message in http://transltr.io:7071/apidocs/#/default/post_validate_query

@@ -4,18 +4,13 @@ import org.semanticscience.d2s.api.model.QueryGraph;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-// https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apimodel
 @Schema( 
 	description = "A message containing the query to the Reasoner API."
 )
 public class Message {
-	// public ReasonerQuery(String message, int max_results) {
-	// 	this.message = message;
-	// 	this.max_results = max_results;
-	// }
 	
 	// See http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Parameter.html
-	@Schema(description = "Reasoner API query graph",
+	@Schema(description = "Reasoner API QueryGraph object that contains a serialization of a query in the form of a graph",
 			required = true)
 	private QueryGraph query_graph;
 	public QueryGraph getQuery_graph() {
@@ -28,6 +23,12 @@ public class Message {
 	private String knowledge_graph;
 	public String getKnowledge_graph() {
 		return knowledge_graph;
+	}
+	
+	@Schema(description = "List of all returned potential answers for the query posed")
+	private String results;
+	public String getResults() {
+		return results;
 	}
 
 }
