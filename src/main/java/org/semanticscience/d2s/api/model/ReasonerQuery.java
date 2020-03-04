@@ -13,9 +13,6 @@ public class ReasonerQuery {
 	public Message getMessage() {
 		return message;
 	}
-	// public void setMessage(String message) {
-	// 	this.message = message;
-	// }
 	
 	@Schema(name = "max_results", 
 			description  = "Maximum number of results returned by the query.", 

@@ -17,18 +17,21 @@ public class Message {
 		return query_graph;
 	}
 	
+	// TODO: create Result, NodeBinding, EdgeBinding and make it an array
+	// https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/blob/master/API/TranslatorReasonersAPI.yaml#L112
+	@Schema(description = "List of all returned potential answers for the query posed")
+	private String results;
+	public String getResults() {
+		return results;
+	}
+	
+	// TODO: create an object for this?
 	@Schema(description = "KnowledgeGraph object that contains all the nodes and edges referenced" + 
 			" in any of the possible answers to the query OR connection information" + 
 			" for a remote knowledge graph")
 	private String knowledge_graph;
 	public String getKnowledge_graph() {
 		return knowledge_graph;
-	}
-	
-	@Schema(description = "List of all returned potential answers for the query posed")
-	private String results;
-	public String getResults() {
-		return results;
 	}
 
 }
