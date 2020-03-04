@@ -15,7 +15,7 @@ public class Node {
 	}
 	
 	@Schema(description = "Formal name of the entity", 
-		//example = "Haptoglobin", 
+		example = "Betamethasone", 
 		required = false)
 	private String name;
 	public String getName() {

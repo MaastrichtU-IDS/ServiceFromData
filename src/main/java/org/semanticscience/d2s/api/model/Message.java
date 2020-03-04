@@ -18,6 +18,7 @@ public class Message {
 	}
 	
 	// TODO: create Result, NodeBinding, EdgeBinding and make it an array
+	// http://cohd.smart-api.info/#/Translator/query
 	// https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/blob/master/API/TranslatorReasonersAPI.yaml#L112
 	@Schema(description = "List of all returned potential answers for the query posed")
 	private String results;

@@ -46,7 +46,9 @@ public class ReasonerService {
     				description = "successful operation", 
                     content = @Content(array = 
                     	@ArraySchema(schema = @Schema(implementation = ReasonerQuery.class)))) })	
-    public ReasonerQuery reasonerQueryCall(
+    // TODO: make it Message
+	// http://cohd.smart-api.info/#/Translator/query
+	public ReasonerQuery reasonerQueryCall(
 			// HttpServletRequest request, HttpServletResponse response,
 			@Parameter(description = "Reasoner API query to execute.", 
 				schema=@Schema(implementation = ReasonerQuery.class),
