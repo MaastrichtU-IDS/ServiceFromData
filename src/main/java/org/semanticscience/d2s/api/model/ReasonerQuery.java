@@ -57,8 +57,8 @@ public class ReasonerQuery {
 	@Schema(name = "reasoner_ids",
 			description = "List of reasoners to consult for the query (e.g.: [ trek, RTX, Robokop ])", 
 			example = "['trek']", required = false)
-	private int reasoner_ids;
-	public int getReasoner_ids() {
+	private String[] reasoner_ids;
+	public String[] getReasoner_ids() {
 		return reasoner_ids;
 	}
 

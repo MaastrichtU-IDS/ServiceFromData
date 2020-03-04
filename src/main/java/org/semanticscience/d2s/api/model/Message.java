@@ -27,12 +27,11 @@ public class Message {
 		return results;
 	}
 	
-	// TODO: create an object for this?
 	@Schema(description = "KnowledgeGraph object that contains all the nodes and edges referenced" + 
 			" in any of the possible answers to the query OR connection information" + 
 			" for a remote knowledge graph")
-	private String knowledge_graph;
-	public String getKnowledge_graph() {
+	private KnowledgeGraph knowledge_graph;
+	public KnowledgeGraph getKnowledge_graph() {
 		return knowledge_graph;
 	}
 

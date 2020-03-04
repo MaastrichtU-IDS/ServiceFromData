@@ -8,15 +8,15 @@ public class QueryGraph {
 	
 	@Schema(description = "List of nodes in the QueryGraph",
 		required= false)
-	private QNode nodes;
-	public QNode getNodes() {
+	private QNode[] nodes;
+	public QNode[] getNodes() {
 		return nodes;
 	}
 	
 	@Schema(description = "List of edges in the QueryGraph", 
 		required = false)
-	private QEdge edges;
-	public QEdge getEdges() {
+	private QEdge[] edges;
+	public QEdge[] getEdges() {
 		return edges;
 	}
 
