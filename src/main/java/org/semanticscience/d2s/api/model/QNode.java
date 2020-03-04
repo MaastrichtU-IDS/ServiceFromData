@@ -30,4 +30,19 @@ public class QNode {
 	public String getType() {
 		return type;
 	}
+	
+	// Build the SPARQL query based on the object attributes
+	private String buildSparqlQuery() {
+		String sparqlQuery = "";
+		if (this.id != null && !this.id.isEmpty()) {
+			sparqlQuery = sparqlQuery;
+		}
+		if (this.type != null && !this.type.isEmpty()) {
+			sparqlQuery = sparqlQuery;
+		}
+		if (this.curie != null && !this.curie.isEmpty()) {
+			sparqlQuery = sparqlQuery;
+		}
+		return sparqlQuery;
+	}
 }
