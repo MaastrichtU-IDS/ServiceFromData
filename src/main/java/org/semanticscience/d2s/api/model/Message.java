@@ -3,10 +3,9 @@ package org.semanticscience.d2s.api.model;
 import org.semanticscience.d2s.api.model.QueryGraph;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 // https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apimodel
-@ApiResponse( 
+@Schema( 
 	description = "A message containing the query to the Reasoner API."
 )
 public class Message {

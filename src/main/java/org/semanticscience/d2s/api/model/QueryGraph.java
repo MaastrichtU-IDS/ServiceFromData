@@ -1,32 +1,23 @@
 package org.semanticscience.d2s.api.model;
 
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiResponse( 
-	description = "Reasoner API Query Graph, containing nodes and edges"
+@Schema( 
+	description = "QueryGraph object that contains a serialization of a query in the form of a graph"
 )
 public class QueryGraph {
-	// public ReasonerQuery(String message, int max_results) {
-	// 	this.message = message;
-	// 	this.max_results = max_results;
-	// }
 	
-	// @NotNull(message = "Message cannot be null")
-	@Parameter(name = "Nodes to query",
+	@Schema(description = "Nodes to query",
 		required= false)
 	private Node nodes;
-		public Node getNodes() {
-			return nodes;
-		}
-	// public void setMessage(String message) {
-	// 	this.message = message;
-	// }
+	public Node getNodes() {
+		return nodes;
+	}
 	
-	@Parameter(name = "Edges to query.", 
+	@Schema(description = "Edges to query.", 
 		required = false)
-	private int edges;
-	public int getEdges() {
+	private Edge edges;
+	public Edge getEdges() {
 		return edges;
 	}
 

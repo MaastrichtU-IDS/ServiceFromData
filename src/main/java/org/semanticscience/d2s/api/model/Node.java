@@ -1,10 +1,9 @@
 package org.semanticscience.d2s.api.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
-@ApiResponse( 
-	description = "Reasoner API Query Graph, containing nodes and edges"
+@Schema( 
+	description = "A node in the query_graph"
 )
 public class Node {
 	
