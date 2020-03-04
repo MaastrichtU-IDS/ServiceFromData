@@ -47,17 +47,15 @@ public class ReasonerService {
     				description = "successful operation", 
                     content = @Content(array = 
                     	@ArraySchema(schema = @Schema(implementation = Message.class)))) })	
-
-	// For results details see http://cohd.smart-api.info/#/Translator/query
 	public Message reasonerQueryCall(
-			// HttpServletRequest request, HttpServletResponse response,
-			@Parameter(description = "Reasoner API query to execute", 
-				schema=@Schema(implementation = ReasonerQuery.class),
-				required = true)
-			@RequestBody @Valid ReasonerQuery reasonerQuery
-			) throws IOException {
+		// HttpServletRequest request, HttpServletResponse response,
+		@Parameter(description = "Reasoner API query to execute", 
+			schema=@Schema(implementation = ReasonerQuery.class),
+			required = true)
+		@RequestBody @Valid ReasonerQuery reasonerQuery
+	) throws IOException {
 		return reasonerQuery.getMessage();
+		// For results details see http://cohd.smart-api.info/#/Translator/query
     	// repository.handleApiCall(ReasonerQueryBuilder.processQuery(query), request, response);
-	}
-    
+	}  
 }
