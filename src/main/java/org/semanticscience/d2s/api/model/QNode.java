@@ -22,8 +22,9 @@ public class QNode {
 		return curie;
 	}
 	
+	// TODO: Make BiolinkEntity?
 	@Schema(description = "BioLink type of the entity", 
-		example = "bl:Drug", 
+		example = "Drug", 
 		required = false)
 	private String type;
 	public String getType() {

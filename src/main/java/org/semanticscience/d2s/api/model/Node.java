@@ -25,8 +25,8 @@ public class Node {
 	@Schema(description = "BioLink type of the entity", 
 		example = "Drug", 
 		required = false)
-	private String type;
-	public String getType() {
+	private BiolinkEntity type;
+	public BiolinkEntity getType() {
 		return type;
 	}
 	

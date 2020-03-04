@@ -19,8 +19,8 @@ public class Edge {
 	@Schema(description = "BioLink type of the edge", 
 		example = "Association", 
 		required = false)
-	private String type;
-	public String getType() {
+	private BiolinkRelation type;
+	public BiolinkRelation getType() {
 		return type;
 	}
 	
