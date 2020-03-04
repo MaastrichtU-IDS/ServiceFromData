@@ -3,7 +3,7 @@ package org.semanticscience.d2s.api.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Top level Reasoner API Query, contains a message with a query_graph.")
-public class ReasonerQuery {
+public class Query {
 	
 	@Schema(description = "Query message for the Reasoner API, containing a query_graph.",
 			required= true)

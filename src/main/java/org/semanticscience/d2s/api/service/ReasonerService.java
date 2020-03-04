@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.semanticscience.d2s.api.repository.RdfRepository;
 import org.semanticscience.d2s.api.repository.ResultAs;
 import org.semanticscience.d2s.api.model.Message;
-import org.semanticscience.d2s.api.model.ReasonerQuery;
+import org.semanticscience.d2s.api.model.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,9 +50,9 @@ public class ReasonerService {
 	public Message reasonerQueryCall(
 		// HttpServletRequest request, HttpServletResponse response,
 		@Parameter(description = "Reasoner API query to execute", 
-			schema=@Schema(implementation = ReasonerQuery.class),
+			schema=@Schema(implementation = Query.class),
 			required = true)
-		@RequestBody @Valid ReasonerQuery reasonerQuery
+		@RequestBody @Valid Query reasonerQuery
 	) throws IOException {
 		return reasonerQuery.getMessage();
 		// For results details see http://cohd.smart-api.info/#/Translator/query
