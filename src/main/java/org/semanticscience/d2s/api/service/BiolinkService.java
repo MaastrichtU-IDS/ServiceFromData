@@ -39,7 +39,7 @@ public class BiolinkService {
 	)
 	@Operation(summary = "Returns all prefixes and their namespace URI used by the API.", 
 		responses = {
-			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
+			@ApiResponse(responseCode = "200", description = "Successful Operation", content = {
 					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
 					@Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
 					@Content(mediaType = ResultAs.CONTENT_TYPE_XML) }) })
@@ -65,7 +65,7 @@ public class BiolinkService {
 			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "This all classes for this particular data-set with instances having an id.", 
 		responses = {
-			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
+			@ApiResponse(responseCode = "200", description = "Successful Operation", content = {
 					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
 					@Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
 					@Content(mediaType = ResultAs.CONTENT_TYPE_XML) }) })
@@ -79,10 +79,10 @@ public class BiolinkService {
 			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "Returns all instances of a class. Default and maximum limit is 1000 instances per page. Use page parameter to load more.", 
 		responses = {
-			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
+			@ApiResponse(responseCode = "200", description = "Successful Operation", content = {
 				@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
 				@Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
-				@Content(mediaType = ResultAs.CONTENT_TYPE_XML)}) })
+				@Content(mediaType = ResultAs.CONTENT_TYPE_XML)})})
 	public void datasetClass(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable String dataset,
 			@PathVariable("class") String className,

@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 	description = "A message containing the query to the Reasoner API."
 )
 public class Message {
+	// TODO: use SecurityScheme? https://springdoc.github.io/springdoc-openapi-demos/#additonnal-settings
 	
 	// See http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Parameter.html
 	@Schema(description = "Reasoner API QueryGraph object that contains a serialization of a query in the form of a graph",
