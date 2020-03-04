@@ -22,7 +22,14 @@ public class QEdge {
 		return type;
 	}
 	
-	// Required in YAML
+	@Schema(description = "Lower-level relationship type of this edge (e.g.: upregulates)", 
+		example = "upregulates", 
+		required = false)
+	private String relation;
+	public String getRelation() {
+		return relation;
+	}
+	
 	@Schema(description = "Corresponds to the id of the source node of this edge", 
 		example = "n00",
 		required = false)
@@ -31,12 +38,19 @@ public class QEdge {
 		return source_id;
 	}
 	
-	// Required in YAML
 	@Schema(description = "Corresponds to the id of the target node of this edge", 
 		example = "n01",
 		required = false)
 	private String target_id;
 	public String getTarget_id() {
 		return target_id;
+	}
+	
+	@Schema(description = "Boolean that if set to true, indicates the edge statement is negated i.e. is not true", 
+		example = "false",
+		required = false)
+	private Boolean negated;
+	public Boolean getNegated() {
+		return negated;
 	}
 }
