@@ -41,13 +41,4 @@ public class Edge {
 	public String getTarget_id() {
 		return target_id;
 	}
-	
-	@Schema(description = "Additional properties for the entity", 
-//		example = "score>0.9", 
-		required = false)
-	private String additionalProperties;
-	public String getAdditionalProperties() {
-		return additionalProperties;
-	}
-
 }
