@@ -47,3 +47,7 @@ mvn package spring-boot:repackage
 # Run
 java -jar target/d2s-api-0.9.0.jar
 ```
+
+## Acknowledgments
+
+Thanks Desson Ariawan for its detailed [tutorial on SpringDoc for OpenAPI3](https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/).

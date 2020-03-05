@@ -33,15 +33,15 @@ public class QNode {
 	
 	// Build the SPARQL query based on the object attributes
 	private String buildSparqlQuery() {
-		String sparqlQuery = "";
-		if (this.id != null && !this.id.isEmpty()) {
-			sparqlQuery = sparqlQuery;
-		}
+		String nodeVar = "?" + this.id;
+		String sparqlQuery = nodeVar + " ?p ?o . \n";
 		if (this.type != null && !this.type.isEmpty()) {
-			sparqlQuery = sparqlQuery;
+			// If type provided
+			sparqlQuery = sparqlQuery + nodeVar + " a bl:" + this.type + " . \n";
 		}
 		if (this.curie != null && !this.curie.isEmpty()) {
-			sparqlQuery = sparqlQuery;
+			// TODO: written to work with URI atm, make it work with CURIE too
+			sparqlQuery = sparqlQuery + nodeVar + " bl:id <" + this.curie + ">";
 		}
 		return sparqlQuery;
 	}
