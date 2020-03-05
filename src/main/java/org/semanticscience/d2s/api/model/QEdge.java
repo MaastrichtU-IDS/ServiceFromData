@@ -57,7 +57,7 @@ public class QEdge {
 	// Build the SPARQL query based on the object attributes
 	public String buildSparqlQuery() {
 		String edgeVar = "?" + this.id;
-		String sparqlQuery = edgeVar + " ?p ?o . \n";
+		String sparqlQuery = edgeVar + " " + edgeVar + "p " + edgeVar + "o . \n";
 		if (this.type != null && !this.type.isEmpty()) {
 			// If type provided
 			sparqlQuery = sparqlQuery + edgeVar + " a bl:" + this.type + " . \n";

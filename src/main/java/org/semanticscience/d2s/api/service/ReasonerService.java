@@ -80,6 +80,7 @@ public class ReasonerService {
 		// For results details see http://cohd.smart-api.info/#/Translator/query
 //    	repository.handleApiCall(selectVariables + sparqlQuery, request, response);
 		
+		System.out.println(selectVariables + sparqlQuery);
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
     	while (reasonerQueryResults.hasNext()) {
 			BindingSet resultRow = reasonerQueryResults.next();
