@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.QueryResults;
+import org.eclipse.rdf4j.query.TupleQuery;
+import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
+import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 import org.eclipse.rdf4j.repository.util.Repositories;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +42,22 @@ public class RdfRepository {
 		} finally {
 			repo.getConnection().close();
 		}
+	}
+	
+	public TupleQueryResult executeSparqlSelect(String queryString) {
+		logger.fine(queryString.trim().replaceAll("\\s+", " "));
+		Repository repo = getRepo();
+		TupleQueryResult selectResults = null;
+		try {
+			RepositoryConnection conn = repo.getConnection();
 
+			TupleQuery tupleQuery = conn.prepareTupleQuery(queryString);
+			selectResults = tupleQuery.evaluate();
+//			Repositories.tupleQueryNoTransaction(repo, query, resultAs.getWriter(outputStream));
+		} finally {
+			repo.getConnection().close();
+		}
+		return selectResults;
 	}
 
 	public List<BindingSet> executeSparql(String query) {

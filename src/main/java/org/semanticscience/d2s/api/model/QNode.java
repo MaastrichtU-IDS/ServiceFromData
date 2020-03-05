@@ -31,8 +31,12 @@ public class QNode {
 		return type;
 	}
 	
+//	public String buildSparqlSelectVar() {
+//		return "?" + this.id + " ";
+//	}
+	
 	// Build the SPARQL query based on the object attributes
-	private String buildSparqlQuery() {
+	public String buildSparqlQuery() {
 		String nodeVar = "?" + this.id;
 		String sparqlQuery = nodeVar + " ?p ?o . \n";
 		if (this.type != null && !this.type.isEmpty()) {
