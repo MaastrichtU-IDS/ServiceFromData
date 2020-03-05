@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.semanticscience.d2s.api.repository.RdfRepository;
 import org.semanticscience.d2s.api.repository.ResultAs;
+import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.semanticscience.d2s.api.model.Message;
 import org.semanticscience.d2s.api.model.QEdge;
@@ -70,21 +71,26 @@ public class ReasonerService {
 		}
 		for (QEdge qEdge : queryGraph.getEdges()) {
 			variablesArray.add(qEdge.getId());
-//			sparqlQuery += qEdge.buildSparqlQuery();
+			sparqlQuery += qEdge.buildSparqlQuery();
 		}
 		// TODO: add filters for query_options
 		sparqlQuery += "}";
-		String selectVariables = "select ?" + String.join(" ?", variablesArray);
+		String selectVariables = BiolinkQueryBuilder.PREFIXES + "select ?" 
+				+ String.join(" ?", variablesArray);
 		// For results details see http://cohd.smart-api.info/#/Translator/query
 //    	repository.handleApiCall(selectVariables + sparqlQuery, request, response);
+		
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
-//    	while (reasonerQueryResults.hasNext()) {
-//			BindingSet resultRow = reasonerQueryResults.next();
-//
+    	while (reasonerQueryResults.hasNext()) {
+			BindingSet resultRow = reasonerQueryResults.next();
+			for (String variable : variablesArray) {
+				System.out.println(variable + " variable:");
+				System.out.println(resultRow.getValue(variable).stringValue());
+			}
 //			IRI subjectIri = f.createIRI(resultRow.getValue("s").stringValue());
 //			IRI predicateIri = f.createIRI(resultRow.getValue("p").stringValue());
 //			String stringToSplit = resultRow.getValue("toSplit").stringValue();
-//    	}
+    	}
 		return reasonerQuery.getMessage();
 	}  
 }

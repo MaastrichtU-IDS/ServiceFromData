@@ -53,4 +53,25 @@ public class QEdge {
 	public Boolean getNegated() {
 		return negated;
 	}
+	
+	// Build the SPARQL query based on the object attributes
+	public String buildSparqlQuery() {
+		String edgeVar = "?" + this.id;
+		String sparqlQuery = edgeVar + " ?p ?o . \n";
+		if (this.type != null && !this.type.isEmpty()) {
+			// If type provided
+			sparqlQuery = sparqlQuery + edgeVar + " a bl:" + this.type + " . \n";
+		}
+		if (this.source_id != null && !this.source_id.isEmpty()) {
+			sparqlQuery = sparqlQuery + edgeVar + " bl:subject ?" + this.source_id + " . \n";
+		}
+		if (this.target_id != null && !this.type.isEmpty()) {
+			sparqlQuery = sparqlQuery + edgeVar + " bl:object ?" + this.target_id + " . \n";
+		}
+		if (this.relation != null && !this.relation.isEmpty()) {
+			// TODO: written to work with URI atm, make it work with CURIE too
+			sparqlQuery = sparqlQuery + edgeVar + " bl:relation bl:" + this.relation + " .";
+		}
+		return sparqlQuery;
+	}
 }
