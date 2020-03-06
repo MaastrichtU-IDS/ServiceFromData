@@ -62,15 +62,18 @@ public class ReasonerService {
 			required = true)
 		@RequestBody @Valid Query reasonerQuery
 	) throws IOException {
+		
 		QueryGraph queryGraph = reasonerQuery.getMessage().getQuery_graph();
 		ArrayList<String> variablesArray = new ArrayList<String>();
 		String sparqlQuery = " where { \n";
 		for (QNode qNode : queryGraph.getNodes()) {
 			variablesArray.add(qNode.getId());
+			variablesArray.add(qNode.getId() + "type");
 			sparqlQuery += qNode.buildSparqlQuery();
 		}
 		for (QEdge qEdge : queryGraph.getEdges()) {
 			variablesArray.add(qEdge.getId());
+			variablesArray.add(qEdge.getId() + "type");
 			sparqlQuery += qEdge.buildSparqlQuery();
 		}
 		// TODO: add filters for query_options
@@ -84,10 +87,20 @@ public class ReasonerService {
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
     	while (reasonerQueryResults.hasNext()) {
 			BindingSet resultRow = reasonerQueryResults.next();
-			for (String variable : variablesArray) {
-				System.out.println(variable + " variable:");
-				System.out.println(resultRow.getValue(variable).stringValue());
+			for (QNode qNode : queryGraph.getNodes()) {
+				System.out.println(qNode.getId() + " qNode ID:");
+				System.out.println(resultRow.getValue(qNode.getId()).stringValue());
+				System.out.println(resultRow.getValue(qNode.getId() + "type").stringValue());
 			}
+			for (QEdge qEdge : queryGraph.getEdges()) {
+				System.out.println(qEdge.getId() + " qEdge ID:");
+				System.out.println(resultRow.getValue(qEdge.getId()).stringValue());
+				System.out.println(resultRow.getValue(qEdge.getId() + "type").stringValue());
+			}
+//			for (String variable : variablesArray) {
+//				System.out.println(variable + " variable:");
+//				System.out.println(resultRow.getValue(variable).stringValue());
+//			}
 //			IRI subjectIri = f.createIRI(resultRow.getValue("s").stringValue());
 //			IRI predicateIri = f.createIRI(resultRow.getValue("p").stringValue());
 //			String stringToSplit = resultRow.getValue("toSplit").stringValue();

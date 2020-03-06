@@ -58,9 +58,10 @@ public class QEdge {
 	public String buildSparqlQuery() {
 		String edgeVar = "?" + this.id;
 		String sparqlQuery = edgeVar + " " + edgeVar + "p " + edgeVar + "o . \n";
+		sparqlQuery = sparqlQuery + edgeVar + " a " + edgeVar + "type . \n";
 		if (this.type != null && !this.type.isEmpty()) {
 			// If type provided
-			sparqlQuery = sparqlQuery + edgeVar + " a bl:" + this.type + " . \n";
+			sparqlQuery = sparqlQuery + edgeVar + " a bl:" + this.type + ". \n";
 		}
 		if (this.source_id != null && !this.source_id.isEmpty()) {
 			sparqlQuery = sparqlQuery + edgeVar + " bl:subject ?" + this.source_id + " . \n";

@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class Node {
 	
 	@Schema(description = "URI or CURIE identifier for this node, e.g. http://api.ohdsi.org/WebAPI/vocabulary/concept/941473",
-		example= "n00", required= true)
+		example= "http://api.ohdsi.org/WebAPI/vocabulary/concept/950641", required= true)
 	private String id;
 	public String getId() {
 		return id;

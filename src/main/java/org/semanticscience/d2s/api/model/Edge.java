@@ -10,7 +10,8 @@ public class Edge {
 	@Schema(description = "Local URI or identifier for this edge, which is unique within this" + 
 			" KnowledgeGraph, and perhaps within the source reasoner's knowledge" + 
 			" graph, e.g. https://w3id.org/biolink/cohd/association/1_8516_941473",
-		example= "e00", required= true)
+		//example= "https://w3id.org/biolink/cohd/association/1_8507_950641",
+		required= true)
 	private String id;
 	public String getId() {
 		return id;
@@ -24,18 +25,16 @@ public class Edge {
 		return type;
 	}
 	
-	// Required in YAML
 	@Schema(description = "Corresponds to the id of the source node of this edge", 
-		example = "n00",
+		example = "http://api.ohdsi.org/WebAPI/vocabulary/concept/8507",
 		required = false)
 	private String source_id;
 	public String getSource_id() {
 		return source_id;
 	}
 	
-	// Required in YAML
 	@Schema(description = "Corresponds to the id of the target node of this edge", 
-		example = "n01",
+		example = "http://api.ohdsi.org/WebAPI/vocabulary/concept/950641",
 		required = false)
 	private String target_id;
 	public String getTarget_id() {

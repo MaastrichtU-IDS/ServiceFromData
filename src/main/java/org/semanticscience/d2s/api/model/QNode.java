@@ -39,9 +39,10 @@ public class QNode {
 	public String buildSparqlQuery() {
 		String nodeVar = "?" + this.id;
 		String sparqlQuery = nodeVar + " " + nodeVar + "p " + nodeVar + "o . \n";
+		sparqlQuery = sparqlQuery + nodeVar + " a " + nodeVar + "type . \n";
 		if (this.type != null && !this.type.isEmpty()) {
 			// If type provided
-			sparqlQuery = sparqlQuery + nodeVar + " a bl:" + this.type + " . \n";
+			sparqlQuery = sparqlQuery + nodeVar + " a bl:" + this.type + ". \n";
 		}
 		if (this.curie != null && !this.curie.isEmpty()) {
 			// TODO: written to work with URI atm, make it work with CURIE too

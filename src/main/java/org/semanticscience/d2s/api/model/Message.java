@@ -28,13 +28,14 @@ public class Message {
 	
 	// TODO: this should be able to be either a KnowledgeGraph OR a RemoteKnowledgeGraph
 	@Schema(description = "KnowledgeGraph object that contains all the nodes and edges referenced" + 
-			" in any of the possible answers to the query OR connection information" + 
-			" for a remote knowledge graph",
+			" in any of the possible answers to the query",
 			required = false)
 	private KnowledgeGraph knowledge_graph;
 	public KnowledgeGraph getKnowledge_graph() {
 		return knowledge_graph;
 	}
+	
+	// TODO: process results here!
 	
 	@Schema(description = "RemoteKnowledgeGraph object that contains  connection information" + 
 			" for a remote knowledge graph connection (not used if knowledge_graph defined)",
