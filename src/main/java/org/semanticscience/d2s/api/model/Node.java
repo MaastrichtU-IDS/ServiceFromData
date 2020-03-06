@@ -7,8 +7,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 )
 public class Node {
 	
+	public Node(String id, String type, String name) {
+		this.id = id;
+		this.type = type;
+		this.name = name;
+	}
+	
 	@Schema(description = "URI or CURIE identifier for this node, e.g. http://api.ohdsi.org/WebAPI/vocabulary/concept/941473",
-		example= "http://api.ohdsi.org/WebAPI/vocabulary/concept/950641", required= true)
+		example= "http://api.ohdsi.org/WebAPI/vocabulary/concept/950641",
+		required= true)
 	private String id;
 	public String getId() {
 		return id;
@@ -25,8 +32,9 @@ public class Node {
 	@Schema(description = "BioLink type of the entity", 
 		example = "Drug", 
 		required = false)
-	private BiolinkEntity type;
-	public BiolinkEntity getType() {
+	//private BiolinkEntity type;
+	private String type;
+	public String getType() {
 		return type;
 	}
 	

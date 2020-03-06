@@ -62,13 +62,14 @@ public class ReasonerService {
 			required = true)
 		@RequestBody @Valid Query reasonerQuery
 	) throws IOException {
-		
+		Message queryMessage = reasonerQuery.getMessage();
 		QueryGraph queryGraph = reasonerQuery.getMessage().getQuery_graph();
 		ArrayList<String> variablesArray = new ArrayList<String>();
-		String sparqlQuery = " where { \n";
+		String sparqlQuery = " WHERE { \n";
 		for (QNode qNode : queryGraph.getNodes()) {
 			variablesArray.add(qNode.getId());
 			variablesArray.add(qNode.getId() + "type");
+			variablesArray.add(qNode.getId() + "name");
 			sparqlQuery += qNode.buildSparqlQuery();
 		}
 		for (QEdge qEdge : queryGraph.getEdges()) {
@@ -76,23 +77,28 @@ public class ReasonerService {
 			variablesArray.add(qEdge.getId() + "type");
 			sparqlQuery += qEdge.buildSparqlQuery();
 		}
-		// TODO: add filters for query_options
-		sparqlQuery += "}";
-		String selectVariables = BiolinkQueryBuilder.PREFIXES + "select ?" 
+		String selectVariables = BiolinkQueryBuilder.PREFIXES + "SELECT DISTINCT ?" 
 				+ String.join(" ?", variablesArray);
+		
+		// TODO: add filters for query_options
+		sparqlQuery += "} LIMIT 50";
+		
 		// For results details see http://cohd.smart-api.info/#/Translator/query
 //    	repository.handleApiCall(selectVariables + sparqlQuery, request, response);
 		
+		queryMessage.createResultKnowledgeGraph();
 		System.out.println(selectVariables + sparqlQuery);
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
     	while (reasonerQueryResults.hasNext()) {
 			BindingSet resultRow = reasonerQueryResults.next();
 			for (QNode qNode : queryGraph.getNodes()) {
+				queryMessage.addQnodeResult(qNode.getId(), resultRow);
 				System.out.println(qNode.getId() + " qNode ID:");
 				System.out.println(resultRow.getValue(qNode.getId()).stringValue());
 				System.out.println(resultRow.getValue(qNode.getId() + "type").stringValue());
 			}
 			for (QEdge qEdge : queryGraph.getEdges()) {
+				queryMessage.addQedgeResult(qEdge.getId(), qEdge.getSource_id(), qEdge.getTarget_id(), resultRow);
 				System.out.println(qEdge.getId() + " qEdge ID:");
 				System.out.println(resultRow.getValue(qEdge.getId()).stringValue());
 				System.out.println(resultRow.getValue(qEdge.getId() + "type").stringValue());
@@ -105,6 +111,6 @@ public class ReasonerService {
 //			IRI predicateIri = f.createIRI(resultRow.getValue("p").stringValue());
 //			String stringToSplit = resultRow.getValue("toSplit").stringValue();
     	}
-		return reasonerQuery.getMessage();
+		return queryMessage;
 	}  
 }

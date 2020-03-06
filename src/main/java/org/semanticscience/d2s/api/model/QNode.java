@@ -40,6 +40,7 @@ public class QNode {
 		String nodeVar = "?" + this.id;
 		String sparqlQuery = nodeVar + " " + nodeVar + "p " + nodeVar + "o . \n";
 		sparqlQuery = sparqlQuery + nodeVar + " a " + nodeVar + "type . \n";
+		sparqlQuery = sparqlQuery + nodeVar + " bl:name " + nodeVar + "name . \n";
 		if (this.type != null && !this.type.isEmpty()) {
 			// If type provided
 			sparqlQuery = sparqlQuery + nodeVar + " a bl:" + this.type + ". \n";

@@ -2,6 +2,7 @@ package org.semanticscience.d2s.api.model;
 
 import java.util.Map;
 
+import org.eclipse.rdf4j.query.BindingSet;
 import org.semanticscience.d2s.api.model.QueryGraph;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -35,7 +36,40 @@ public class Message {
 		return knowledge_graph;
 	}
 	
+	public void createResultKnowledgeGraph() {
+		this.knowledge_graph = new KnowledgeGraph();
+	}
+	
 	// TODO: process results here!
+	public void addQnodeResult(String id, BindingSet resultRow) {
+		System.out.println("iddd");
+		System.out.println(id);
+		System.out.println(resultRow.getValue(id).stringValue());
+		System.out.println(resultRow.getValue(id + "type").stringValue());
+		System.out.println(resultRow.getValue(id + "name").stringValue());
+		try {
+			this.knowledge_graph.addNode(resultRow.getValue(id).stringValue(), 
+					resultRow.getValue(id + "type").stringValue(),
+					resultRow.getValue(id + "name").stringValue());
+		} catch (java.lang.NullPointerException e) {
+			e.printStackTrace();
+		}
+		//this.results.addResult(id, resultRow);
+		//resultRow.getValue(id).stringValue();
+	}
+	public void addQedgeResult(String id, String sourceId, String targetId, BindingSet resultRow) {
+		try {
+			this.knowledge_graph.addEdge(resultRow.getValue(id).stringValue(),
+					resultRow.getValue(id + "type").stringValue(),
+					resultRow.getValue(sourceId).stringValue(),
+					resultRow.getValue(targetId).stringValue()
+					);
+		} catch (java.lang.NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
+		//this.results.addResult(id, resultRow);
+		//resultRow.getValue(id).stringValue();
+	}
 	
 	@Schema(description = "RemoteKnowledgeGraph object that contains  connection information" + 
 			" for a remote knowledge graph connection (not used if knowledge_graph defined)",

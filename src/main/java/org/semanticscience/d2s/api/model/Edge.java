@@ -7,6 +7,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 )
 public class Edge {
 	
+	public Edge(String id, String type, String source_id, String target_id) {
+		this.id = id;
+		this.type = type;
+		this.source_id = source_id;
+		this.target_id = target_id;
+	}
+	
 	@Schema(description = "Local URI or identifier for this edge, which is unique within this" + 
 			" KnowledgeGraph, and perhaps within the source reasoner's knowledge" + 
 			" graph, e.g. https://w3id.org/biolink/cohd/association/1_8516_941473",
@@ -20,8 +27,9 @@ public class Edge {
 	@Schema(description = "BioLink type of the edge", 
 		example = "Association", 
 		required = false)
-	private BiolinkRelation type;
-	public BiolinkRelation getType() {
+	//private BiolinkRelation type;
+	private String type;
+	public String getType() {
 		return type;
 	}
 	
