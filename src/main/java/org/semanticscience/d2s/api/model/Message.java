@@ -48,11 +48,11 @@ public class Message {
 	
 	// TODO: process results here!
 	public void addQnodeResult(String id, BindingSet resultRow) {
-		System.out.println("iddd");
-		System.out.println(id);
-		System.out.println(resultRow.getValue(id).stringValue());
-		System.out.println(resultRow.getValue(id + "type").stringValue());
-		System.out.println(resultRow.getValue(id + "name").stringValue());
+//		System.out.println("addQnode");
+//		System.out.println(id);
+//		System.out.println(resultRow.getValue(id).stringValue());
+//		System.out.println(resultRow.getValue(id + "type").stringValue());
+//		System.out.println(resultRow.getValue(id + "name").stringValue());
 		this.knowledge_graph.addNode(resultRow.getValue(id).stringValue(), 
 				resultRow.getValue(id + "type").stringValue(),
 				resultRow.getValue(id + "name").stringValue());
