@@ -1,24 +1,38 @@
 package org.semanticscience.d2s.api.model;
 
+import java.util.ArrayList;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "One of potentially several results or answers for a query")
 public class Result {
 	
+	public Result() {
+		this.node_bindings = new ArrayList<NodeBinding>();
+		this.edge_bindings = new ArrayList<EdgeBinding>();
+	}
+	
 	@Schema(description = "List of QNode-KNode bindings.",
 		required= false)
-	private NodeBinding[] node_bindings;
-	public NodeBinding[] getNode_bindings() {
+	private ArrayList<NodeBinding> node_bindings;
+	public ArrayList<NodeBinding> getNode_bindings() {
 		return node_bindings;
 	}
 	
 	@Schema(description = "List of QEdge-KEdge bindings.", 
 		required = false)
-	private EdgeBinding[] edge_bindings;
-	public EdgeBinding[] getEdge_bindings() {
+	private ArrayList<EdgeBinding> edge_bindings;
+	public ArrayList<EdgeBinding> getEdge_bindings() {
 		return edge_bindings;
 	}
 	
+	// Add new Node and Edge Bindings to their list
+	public void addNodeBinding(String qg_id, String kg_id) {
+		this.node_bindings.add(new NodeBinding(qg_id, kg_id));
+	}
+	public void addEdgeBinding(String qg_id, String kg_id) {
+		this.edge_bindings.add(new EdgeBinding(qg_id, kg_id));
+	}
 
 	@Schema(description = "Any type of score associated with this result (e.g.: 163.233)", 
 		required = false)

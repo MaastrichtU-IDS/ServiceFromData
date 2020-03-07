@@ -1,5 +1,6 @@
 package org.semanticscience.d2s.api.model;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.eclipse.rdf4j.query.BindingSet;
@@ -22,8 +23,8 @@ public class Message {
 	}
 	
 	@Schema(description = "List of all returned potential answers for the query posed")
-	private Result[] results;
-	public Result[] getResults() {
+	private ArrayList<Result> results;
+	public ArrayList<Result> getResults() {
 		return results;
 	}
 	
@@ -38,6 +39,11 @@ public class Message {
 	
 	public void createResultKnowledgeGraph() {
 		this.knowledge_graph = new KnowledgeGraph();
+		this.results = new ArrayList<Result>();
+	}
+	
+	public void createResultBindings() {
+		this.results.add(new Result());
 	}
 	
 	// TODO: process results here!
@@ -47,28 +53,20 @@ public class Message {
 		System.out.println(resultRow.getValue(id).stringValue());
 		System.out.println(resultRow.getValue(id + "type").stringValue());
 		System.out.println(resultRow.getValue(id + "name").stringValue());
-		try {
-			this.knowledge_graph.addNode(resultRow.getValue(id).stringValue(), 
-					resultRow.getValue(id + "type").stringValue(),
-					resultRow.getValue(id + "name").stringValue());
-		} catch (java.lang.NullPointerException e) {
-			e.printStackTrace();
-		}
-		//this.results.addResult(id, resultRow);
-		//resultRow.getValue(id).stringValue();
+		this.knowledge_graph.addNode(resultRow.getValue(id).stringValue(), 
+				resultRow.getValue(id + "type").stringValue(),
+				resultRow.getValue(id + "name").stringValue());
+		// Add NodeBinding to the latest result added to the list
+		this.results.get(results.size() - 1).addNodeBinding(id, resultRow.getValue(id).stringValue());
 	}
 	public void addQedgeResult(String id, String sourceId, String targetId, BindingSet resultRow) {
-		try {
-			this.knowledge_graph.addEdge(resultRow.getValue(id).stringValue(),
-					resultRow.getValue(id + "type").stringValue(),
-					resultRow.getValue(sourceId).stringValue(),
-					resultRow.getValue(targetId).stringValue()
-					);
-		} catch (java.lang.NullPointerException e) {
-			System.out.println(e.getMessage());
-		}
-		//this.results.addResult(id, resultRow);
-		//resultRow.getValue(id).stringValue();
+		this.knowledge_graph.addEdge(resultRow.getValue(id).stringValue(),
+				resultRow.getValue(id + "type").stringValue(),
+				resultRow.getValue(sourceId).stringValue(),
+				resultRow.getValue(targetId).stringValue()
+				);
+		// Add EdgeBinding to the latest result added to the list
+		this.results.get(results.size() - 1).addEdgeBinding(id, resultRow.getValue(id).stringValue());
 	}
 	
 	@Schema(description = "RemoteKnowledgeGraph object that contains  connection information" + 

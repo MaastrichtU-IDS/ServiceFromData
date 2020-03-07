@@ -91,6 +91,7 @@ public class ReasonerService {
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
     	while (reasonerQueryResults.hasNext()) {
 			BindingSet resultRow = reasonerQueryResults.next();
+			queryMessage.createResultBindings();
 			for (QNode qNode : queryGraph.getNodes()) {
 				queryMessage.addQnodeResult(qNode.getId(), resultRow);
 				System.out.println(qNode.getId() + " qNode ID:");
