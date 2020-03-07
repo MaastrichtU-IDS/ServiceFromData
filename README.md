@@ -1,10 +1,10 @@
 ## About
-This project aims to generate useful webservices described following the [OpenAPI 3.0](http://spec.openapis.org/oas/v3.0.3) specifications using [SpringDoc](https://springdoc.github.io/springdoc-openapi-demos/). The generated services enable the user to query a [BioLink-compliant](https://biolink.github.io/biolink-model/) RDF knowledge graph using HTTP request following the [Reasoner API Specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API). 
+This project aims to generate useful web services described following the [OpenAPI 3.0](http://spec.openapis.org/oas/v3.0.1) specifications using [SpringDoc](https://springdoc.github.io/springdoc-openapi-demos/). The generated services enable the user to query a [BioLink-compliant](https://biolink.github.io/biolink-model/) RDF knowledge graph using HTTP request following the [Reasoner API Specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API). 
 
 This services has been developed for the [NCATS Translator project](https://ncats.nih.gov/translator).
 
 ## Pull or build
-You can pull the image from DockerHub
+You can pull the image from [DockerHub](https://hub.docker.com/repository/docker/umids/d2s-api)
 
 ```bash
 docker pull umids/d2s-api
@@ -45,7 +45,7 @@ Use the [convenience script](https://github.com/MaastrichtU-IDS/d2s-api/blob/mas
 
 > Access at http://localhost:8080
 
-Or manually
+Or manually:
 
 ```bash
 # Build
