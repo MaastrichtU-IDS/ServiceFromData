@@ -49,9 +49,9 @@ public class ReasonerService {
     	, consumes = {ResultAs.CONTENT_TYPE_JSON}
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
 	@Operation(summary="Execute a Reasoner API query on the BioLink-compliant triplestore.",
-		description="Query the BioLink-compliant knowledge graph using the [Reasoner API query specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class).\n"
+		description="Query the BioLink-compliant knowledge graph using the [Reasoner API query specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class).\n\n"
 				+ "Example query for COHD:\n"
-				+ "``` \n"
+				+ "```json \n"
 				+ "{\n" + 
 				"  \"max_results\": 50,\n" + 
 				"  \"message\": {\n" + 

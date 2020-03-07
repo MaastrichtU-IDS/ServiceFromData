@@ -1,37 +1,43 @@
 ## About
-This project aims to generate useful webservices for the the BioLink Api.
-For now it serves only Swagger V2 services, since it depends on Springfox.
+This project aims to generate useful webservices described following the [OpenAPI 3.0](http://spec.openapis.org/oas/v3.0.3) specifications using [SpringDoc](https://springdoc.github.io/springdoc-openapi-demos/). The generated services enable the user to query a [BioLink-compliant](https://biolink.github.io/biolink-model/) RDF knowledge graph using HTTP request following the [Reasoner API Specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API). 
 
-## Build
-First build and builds after modifying pom.xml might take some time, since the Dockerfile will resolve all dependencies from scratch. Once cached, builds should be significantly faster.
+This services has been developed for the [NCATS Translator project](https://ncats.nih.gov/translator).
+
+## Pull or build
+You can pull the image from DockerHub
+
 ```bash
-docker build -t d2s-api .
+docker pull umids/d2s-api
+```
+
+Or build from the git repository. Builds after modifying pom.xml might take some time, since the Dockerfile will resolve all dependencies from scratch. Once cached, builds should be significantly faster.
+
+```bash
+docker build -t umids/d2s-api .
 ```
 
 ## Run
-Use `-e ENDPOINT=<biolink_sparql_endpoint_url>` environment switch to override default endpoint.
 ```bash
-docker run -it --rm -p 80:8080 d2s-api
+docker run -it --rm -p 80:8080 umids/d2s-api
 ```
 
-Using a specific endpoint and the DockerHub image:
+Use `-e ENDPOINT=<biolink_sparql_endpoint_url>` environment switch to override default endpoint.
+
+Using a specific endpoint and the [DockerHub image](https://hub.docker.com/repository/docker/umids/d2s-api):
 
 ```bash
 docker run -it --rm -p 80:8080 --net d2s-cwl-workflows_network -e ENDPOINT="http://graphdb:7200/repositories/test" umids/d2s-api
 ```
 
-### Try it out: 
+> Access at http://localhost/
 
-http://localhost/
-
-### Swagger Apidoc:
-http://localhost/v2/api-docs
+> Access the Swagger Apidoc at http://localhost/v3/api-docs
 
 ## Development
 
 Change the default endpoint in [src/main/resources/application.yml](https://github.com/MaastrichtU-IDS/d2s-api/blob/master/src/main/resources/application.yml#L2)
 
-Use the convenience script
+Use the [convenience script](https://github.com/MaastrichtU-IDS/d2s-api/blob/master/restart_local.sh):
 
 ```bash
 ./restart_local.sh
