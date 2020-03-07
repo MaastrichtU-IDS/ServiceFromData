@@ -3,7 +3,7 @@ package org.semanticscience.d2s.api.service;
 public class AbstractQueryBuilder {
 	public static final Long LIMIT = 1000L;
 	
-	// TODO: allow to change prefixes (and see)
+	// TODO: make it a Java object?
 	public static final String PREFIXES = 
 		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
 		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
@@ -23,8 +23,9 @@ public class AbstractQueryBuilder {
 		+ "PREFIX obo: <http://purl.obolibrary.org/obo/>\n"
 		+ "PREFIX ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#>\n"
 		+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-		+ "PREFIX schema: <http://schema.org/>\n";
-
+		+ "PREFIX schema: <http://schema.org/>\n"
+		+ "PREFIX omopcohd: <http://api.ohdsi.org/WebAPI/vocabulary/concept/>\n";
+	
 	protected static String paginate(Long page, Long limit) {
 		if (limit == null || limit > LIMIT || limit<1L)
 			limit = LIMIT;

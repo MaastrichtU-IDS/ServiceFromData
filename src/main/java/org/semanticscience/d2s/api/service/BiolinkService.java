@@ -31,20 +31,18 @@ public class BiolinkService {
 	@Autowired
 	private RdfRepository repository;
 
-	// https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/
 	// http://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Operation.html
 	@RequestMapping(value = "/prefixes", 
 		method = RequestMethod.GET, 
-		produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV}
+		produces = {"text/plain"}
+		// We could use application/sparql-query but showing 'unrecognized type' warning in SwaggerUI
 	)
 	@Operation(summary = "Returns all prefixes and their namespace URI used by the API.", 
 		responses = {
 			@ApiResponse(responseCode = "200", description = "Successful Operation", content = {
-					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
-					@Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
-					@Content(mediaType = ResultAs.CONTENT_TYPE_XML) }) })
-	public void prefixes(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		repository.handleApiCall(BiolinkQueryBuilder.datasets(), request, response);
+					@Content(mediaType = "text/plain") }) })
+	public String prefixes() throws IOException {
+		return BiolinkQueryBuilder.PREFIXES;
 	}
 
 	@RequestMapping(value = "/datasets", 
@@ -53,7 +51,8 @@ public class BiolinkService {
 	@Operation(summary = "This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.", 
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
-					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
+					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), 
+					@Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
 					@Content(mediaType = ResultAs.CONTENT_TYPE_JSON),
 					@Content(mediaType = ResultAs.CONTENT_TYPE_XML) }) })
 	public void datasets(HttpServletRequest request, HttpServletResponse response) throws IOException {
