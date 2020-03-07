@@ -49,7 +49,25 @@ public class ReasonerService {
     	, consumes = {ResultAs.CONTENT_TYPE_JSON}
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
 	@Operation(summary="Execute a Reasoner API query on the BioLink-compliant triplestore.",
-		description="See the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class)")
+		description="Query the BioLink-compliant knowledge graph using the [Reasoner API query specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class).\n"
+				+ "Example query for COHD:\n"
+				+ "``` \n"
+				+ "{\n" + 
+				"  \"max_results\": 50,\n" + 
+				"  \"message\": {\n" + 
+				"    \"query_graph\": {\n" + 
+				"      \"nodes\": [\n" + 
+				"        { \"id\": \"n00\", \"type\": \"BiologicalSex\" },\n" + 
+				"        { \"id\": \"n01\", \"type\": \"Drug\" }\n" + 
+				"      ],\n" + 
+				"      \"edges\": [\n" + 
+				"        { \"id\": \"e00\", \"type\": \"Association\",\n" + 
+				"          \"source_id\": \"n00\", \"target_id\": \"n01\" }\n" + 
+				"      ]\n" + 
+				"    }\n" +
+				"  }\n" + 
+				"}\n" +
+				"```")
     @ApiResponses(value = {
     		@ApiResponse(responseCode = "200", 
     				description = "successful operation", 
