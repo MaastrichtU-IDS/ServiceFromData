@@ -15,7 +15,7 @@ public class QNode {
 	}
 	
 	@Schema(description = "URI or CURIE identifier for this node", 
-		example = "http://api.ohdsi.org/WebAPI/vocabulary/concept/941473", 
+//		example = "http://api.ohdsi.org/WebAPI/vocabulary/concept/941473", 
 		required = false)
 	private String curie;
 	public String getCurie() {

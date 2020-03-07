@@ -51,7 +51,7 @@ public class BiolinkService {
 			method = RequestMethod.GET,
 			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "Returns all datasets, which can be used as input for other services.",
-		description = "This call returns all datasets, which can be used as input for other services. Note that the first line in csv is the header.",
+		description = "This call returns **all datasets**, which can be used as input for other services. Note that the first line in csv is the header.",
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
 					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), 
@@ -66,7 +66,7 @@ public class BiolinkService {
 			method = RequestMethod.GET,
 			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "Returns all classes for this particular dataset with instances having an id.",
-		description = "This call returns all classes for this particular dataset with instances having an id.",
+		description = "This call returns **all classes** for this particular dataset with instances having an id.",
 		responses = {
 			@ApiResponse(responseCode = "200", description = "Successful Operation", content = {
 					@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
@@ -81,7 +81,7 @@ public class BiolinkService {
 			method = RequestMethod.GET,
 			produces = {ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV})
 	@Operation(summary = "Returns all instances of a class in a dataset.",
-		description = "This call returns all instances of a class in a dataset. Default and maximum limit is 1000 instances per page. Use page parameter to load more.",
+		description = "This call returns **all instances** of a class in a dataset. Default and maximum limit is 1000 instances per page. Use page parameter to load more.",
 		responses = {
 			@ApiResponse(responseCode = "200", description = "Successful Operation", content = {
 				@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),
@@ -98,7 +98,7 @@ public class BiolinkService {
 			method = RequestMethod.GET,  
 			produces = { ResultAs.CONTENT_TYPE_XML, ResultAs.CONTENT_TYPE_JSON, ResultAs.CONTENT_TYPE_CSV, ResultAs.CONTENT_TYPE_TSV })
 	@Operation(summary = "Loads all properties of a specific instance.",
-		description = "This call returns all properties of a specific instance.",
+		description = "This call returns **all properties** of a specific instance.",
 		responses = {
 			@ApiResponse(description = "Successful Operation", responseCode = "200", content = {
 				@Content(mediaType = ResultAs.CONTENT_TYPE_TSV), @Content(mediaType = ResultAs.CONTENT_TYPE_CSV),

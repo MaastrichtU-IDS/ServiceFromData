@@ -23,7 +23,7 @@ public class QEdge {
 	}
 	
 	@Schema(description = "Lower-level relationship type of this edge (e.g.: upregulates)", 
-		example = "upregulates", 
+		example = "related_to", 
 		required = false)
 	private String relation;
 	public String getRelation() {
@@ -47,7 +47,7 @@ public class QEdge {
 	}
 	
 	@Schema(description = "Boolean that if set to true, indicates the edge statement is negated i.e. is not true", 
-		example = "false",
+//		example = "false",
 		required = false)
 	private Boolean negated;
 	public Boolean getNegated() {

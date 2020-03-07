@@ -50,4 +50,6 @@ java -jar target/d2s-api-0.9.0.jar
 
 ## Acknowledgments
 
-Thanks Desson Ariawan for its detailed [tutorial on SpringDoc for OpenAPI3](https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/).
+Thanks Desson Ariawan for its detailed [tutorial on documenting Spring Boot REST API with SpringDoc + OpenAPI 3](https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/).
+
+And Baeldung for their [tutorial about documenting a Spring REST API Using OpenAPI 3.0](https://www.baeldung.com/spring-rest-openapi-documentation).
