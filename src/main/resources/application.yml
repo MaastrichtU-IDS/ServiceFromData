@@ -1,7 +1,6 @@
 default:
-  # endpoint: http://graphdb.dumontierlab.com/repositories/ncats-red-kg
-  # endpoint: http://localhost:7200/repositories/test
   endpoint: http://graphdb.dumontierlab.com/repositories/trek
+  # endpoint: http://localhost:7200/repositories/demo
 logging:
   level:
     org:
@@ -9,3 +8,5 @@ logging:
       springframework: ERROR
 server:
   port: 8080
+# Avoid getting null fields in JSON response
+spring.jackson.default-property-inclusion: non_null
