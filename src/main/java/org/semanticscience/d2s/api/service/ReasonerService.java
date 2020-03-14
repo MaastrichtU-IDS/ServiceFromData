@@ -57,7 +57,7 @@ public class ReasonerService {
 				"  \"message\": {\n" + 
 				"    \"query_graph\": {\n" + 
 				"      \"nodes\": [\n" + 
-				"        { \"id\": \"n00\", \"type\": \"BiologicalSex\" },\n" + 
+				"        { \"id\": \"n00\", \"type\": \"Procedure\" },\n" + 
 				"        { \"id\": \"n01\", \"type\": \"Drug\" }\n" + 
 				"      ],\n" + 
 				"      \"edges\": [\n" + 
