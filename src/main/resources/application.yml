@@ -9,4 +9,5 @@ logging:
 server:
   port: 8080
 # Avoid getting null fields in JSON response
-spring.jackson.default-property-inclusion: non_null
+spring.jackson.default-property-inclusion: non_default
+# non_empty includes more than non_null

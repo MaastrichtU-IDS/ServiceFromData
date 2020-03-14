@@ -105,22 +105,22 @@ public class ReasonerService {
 //    	repository.handleApiCall(selectVariables + sparqlQuery, request, response);
 		
 		queryMessage.createResultKnowledgeGraph();
-		System.out.println(selectVariables + sparqlQuery);
+//		System.out.println(selectVariables + sparqlQuery);
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
     	while (reasonerQueryResults.hasNext()) {
 			BindingSet resultRow = reasonerQueryResults.next();
 			queryMessage.createResultBindings();
 			for (QNode qNode : queryGraph.getNodes()) {
 				queryMessage.addQnodeResult(qNode.getId(), resultRow);
-				System.out.println(qNode.getId() + " qNode ID:");
-				System.out.println(resultRow.getValue(qNode.getId()).stringValue());
-				System.out.println(resultRow.getValue(qNode.getId() + "type").stringValue());
+//				System.out.println(qNode.getId() + " qNode ID:");
+//				System.out.println(resultRow.getValue(qNode.getId()).stringValue());
+//				System.out.println(resultRow.getValue(qNode.getId() + "type").stringValue());
 			}
 			for (QEdge qEdge : queryGraph.getEdges()) {
 				queryMessage.addQedgeResult(qEdge.getId(), qEdge.getSource_id(), qEdge.getTarget_id(), resultRow);
-				System.out.println(qEdge.getId() + " qEdge ID:");
-				System.out.println(resultRow.getValue(qEdge.getId()).stringValue());
-				System.out.println(resultRow.getValue(qEdge.getId() + "type").stringValue());
+//				System.out.println(qEdge.getId() + " qEdge ID:");
+//				System.out.println(resultRow.getValue(qEdge.getId()).stringValue());
+//				System.out.println(resultRow.getValue(qEdge.getId() + "type").stringValue());
 			}
 //			for (String variable : variablesArray) {
 //				System.out.println(variable + " variable:");
