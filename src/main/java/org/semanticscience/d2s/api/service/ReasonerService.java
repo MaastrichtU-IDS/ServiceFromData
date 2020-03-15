@@ -64,9 +64,10 @@ public class ReasonerService {
 				"        { \"id\": \"e00\", \"type\": \"Association\",\n" + 
 				"          \"source_id\": \"n00\", \"target_id\": \"n01\" }\n" + 
 				"      ]\n" + 
-				"    }\n" +
-				"    \"query_options\": {" +
-				"	   \"has_count\": \"10\"" +
+				"    },\n" +
+				"    \"query_options\": {\n" +
+				"	   \"https://w3id.org/biolink/cohd/attribute/ttest\": \"1.5e+02\",\n" +
+				"	   \"https://w3id.org/biolink/cohd/attribute/pvalue\": \"1.338936e-87\"\n" +
 				"    }\n" + 
 				"  }\n" + 
 				"}\n" +

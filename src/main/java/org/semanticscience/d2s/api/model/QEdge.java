@@ -77,19 +77,26 @@ public class QEdge {
 			sparqlQuery = sparqlQuery + edgeVar + " bl:relation bl:" + this.relation + " .";
 		}
 		// Add filters for has_count/has_quotient
-    	for (Map.Entry<String, String> queryOption : queryOptions.entrySet()) {
-	        System.out.println(queryOption.getKey() + " = " + queryOption.getValue());
-	        sparqlQuery += edgeVar + " bl:has_evidence [ bl:" + queryOption.getKey() + " " + edgeVar + queryOption.getKey() + " ] .\n";
-	        sparqlQuery += "FILTER(" + edgeVar + queryOption.getKey() +" >= " + queryOption.getValue() + ") \n";
-	        // Adding to thje SPARQL query:
+		if (queryOptions != null && !queryOptions.isEmpty()) {
+			int queryOptionCount = 1;
+	    	for (Map.Entry<String, String> queryOption : queryOptions.entrySet()) {
+		        System.out.println(queryOption.getKey() + " = " + queryOption.getValue());
+		        sparqlQuery += edgeVar + " bl:has_evidence [ bl:has_attribute [ bl:has_attribute_type <"
+		        		+ queryOption.getKey() + "> ; bl:has_quantitative_value [ bl:has_numeric_value " 
+	        			+ edgeVar + queryOptionCount + " ] ] ].\n";
+		        sparqlQuery += "FILTER(xsd:double(" + edgeVar + queryOptionCount +") >= xsd:double(" 
+	        			+ queryOption.getValue() + ")) \n";
+		        queryOptionCount++;
+		        // Adding to the SPARQL query:
+		        // ?e00 bl:has_evidence [ bl:has_attribute [ 
+				// bl:has_attribute_type <https://w3id.org/biolink/cohd/attribute/ttest> ; 
+				// bl:has_quantitative_value [bl:has_numeric_value ?e001 ] ] ] .
+				// FILTER( ?e001 >= 40)
+		    }
+		    // Also: with has_count on evidence:
 		    // ?e00 bl:has_evidence [ bl:has_count ?e00has_count ] .
 			// FILTER( ?e00has_count >= 40)
-	    }
-	    // TODO: with Attributes:
-//		#?e00 bl:has_evidence [ bl:has_attribute [ 
-//		# bl:has_attribute_type <https://w3id.org/biolink/cohd/attribute/ttest> ; 
-//		# bl:has_quantitative_value [bl:has_numeric_value ?e00ttest ] ] ] .
-//		#FILTER( ?e00ttest >= 40)
+		}
 	    
 		return sparqlQuery;
 	}
