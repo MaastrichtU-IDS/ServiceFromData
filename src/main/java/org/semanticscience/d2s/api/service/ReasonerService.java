@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import org.semanticscience.d2s.api.repository.RdfRepository;
-import org.semanticscience.d2s.api.repository.ResultAs;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.semanticscience.d2s.api.model.Message;
@@ -13,24 +15,22 @@ import org.semanticscience.d2s.api.model.QEdge;
 import org.semanticscience.d2s.api.model.QNode;
 import org.semanticscience.d2s.api.model.Query;
 import org.semanticscience.d2s.api.model.QueryGraph;
+import org.semanticscience.d2s.api.repository.RdfRepository;
+import org.semanticscience.d2s.api.repository.ResultAs;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
@@ -65,6 +65,9 @@ public class ReasonerService {
 				"          \"source_id\": \"n00\", \"target_id\": \"n01\" }\n" + 
 				"      ]\n" + 
 				"    }\n" +
+				"    \"query_options\": {" +
+				"	   \"has_count\": \"10\"" +
+				"    }\n" + 
 				"  }\n" + 
 				"}\n" +
 				"```")
@@ -84,6 +87,7 @@ public class ReasonerService {
 		QueryGraph queryGraph = reasonerQuery.getMessage().getQuery_graph();
 		ArrayList<String> variablesArray = new ArrayList<String>();
 		String sparqlQuery = " WHERE { \n";
+		// Build SPARQL query for each QNode and QEdge
 		for (QNode qNode : queryGraph.getNodes()) {
 			variablesArray.add(qNode.getId());
 			variablesArray.add(qNode.getId() + "type");
@@ -93,23 +97,29 @@ public class ReasonerService {
 		for (QEdge qEdge : queryGraph.getEdges()) {
 			variablesArray.add(qEdge.getId());
 			variablesArray.add(qEdge.getId() + "type");
-			sparqlQuery += qEdge.buildSparqlQuery();
+			sparqlQuery += qEdge.buildSparqlQuery(queryMessage.getQuery_options());
 		}
+		// Add SPARQL select part
 		String selectVariables = BiolinkQueryBuilder.PREFIXES + "SELECT DISTINCT ?" 
 				+ String.join(" ?", variablesArray);
 		
-		// TODO: add filters for query_options
-		sparqlQuery += "} LIMIT 50";
+		// Close SPARQL query
+		if (reasonerQuery.getMax_results() != 0) {
+			sparqlQuery += "} LIMIT " + reasonerQuery.getMax_results();
+		} else {
+			sparqlQuery += "}";
+		}
 		
 		// For results details see http://cohd.smart-api.info/#/Translator/query
 //    	repository.handleApiCall(selectVariables + sparqlQuery, request, response);
 		
 		queryMessage.createResultKnowledgeGraph();
-//		System.out.println(selectVariables + sparqlQuery);
+		System.out.println(selectVariables + sparqlQuery);
     	TupleQueryResult reasonerQueryResults = repository.executeSparqlSelect(selectVariables + sparqlQuery);
     	while (reasonerQueryResults.hasNext()) {
 			BindingSet resultRow = reasonerQueryResults.next();
 			queryMessage.createResultBindings();
+			// Generate results for each QNode and QEdge
 			for (QNode qNode : queryGraph.getNodes()) {
 				queryMessage.addQnodeResult(qNode.getId(), resultRow);
 //				System.out.println(qNode.getId() + " qNode ID:");
@@ -122,6 +132,7 @@ public class ReasonerService {
 //				System.out.println(resultRow.getValue(qEdge.getId()).stringValue());
 //				System.out.println(resultRow.getValue(qEdge.getId() + "type").stringValue());
 			}
+			// Iterate over the SPARQL variables array
 //			for (String variable : variablesArray) {
 //				System.out.println(variable + " variable:");
 //				System.out.println(resultRow.getValue(variable).stringValue());

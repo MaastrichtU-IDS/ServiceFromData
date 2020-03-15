@@ -1,5 +1,8 @@
 package org.semanticscience.d2s.api.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema( 
@@ -55,7 +58,7 @@ public class QEdge {
 	}
 	
 	// Build the SPARQL query based on the object attributes
-	public String buildSparqlQuery() {
+	public String buildSparqlQuery(HashMap<String, String> queryOptions) {
 		String edgeVar = "?" + this.id;
 		String sparqlQuery = edgeVar + " " + edgeVar + "p " + edgeVar + "o . \n";
 		sparqlQuery = sparqlQuery + edgeVar + " a " + edgeVar + "type . \n";
@@ -73,6 +76,21 @@ public class QEdge {
 			// TODO: written to work with URI atm, make it work with CURIE too
 			sparqlQuery = sparqlQuery + edgeVar + " bl:relation bl:" + this.relation + " .";
 		}
+		// Add filters for has_count/has_quotient
+    	for (Map.Entry<String, String> queryOption : queryOptions.entrySet()) {
+	        System.out.println(queryOption.getKey() + " = " + queryOption.getValue());
+	        sparqlQuery += edgeVar + " bl:has_evidence [ bl:" + queryOption.getKey() + " " + edgeVar + queryOption.getKey() + " ] .\n";
+	        sparqlQuery += "FILTER(" + edgeVar + queryOption.getKey() +" >= " + queryOption.getValue() + ") \n";
+	        // Adding to thje SPARQL query:
+		    // ?e00 bl:has_evidence [ bl:has_count ?e00has_count ] .
+			// FILTER( ?e00has_count >= 40)
+	    }
+	    // TODO: with Attributes:
+//		#?e00 bl:has_evidence [ bl:has_attribute [ 
+//		# bl:has_attribute_type <https://w3id.org/biolink/cohd/attribute/ttest> ; 
+//		# bl:has_quantitative_value [bl:has_numeric_value ?e00ttest ] ] ] .
+//		#FILTER( ?e00ttest >= 40)
+	    
 		return sparqlQuery;
 	}
 }

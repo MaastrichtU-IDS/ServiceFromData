@@ -1,8 +1,7 @@
 package org.semanticscience.d2s.api.model;
 
 import java.util.ArrayList;
-import java.util.Map;
-
+import java.util.HashMap;
 import org.eclipse.rdf4j.query.BindingSet;
 import org.semanticscience.d2s.api.model.QueryGraph;
 
@@ -117,8 +116,8 @@ public class Message {
 		return tool_version;
 	}
 	
-	@Schema(description = "Version label of this JSON-LD schema (e.g.: 0.9.0)",
-			//example = "0.9.0",
+	@Schema(description = "Version label of this JSON-LD schema (e.g.: 0.9.1)",
+			example = "0.9.1",
 			required = false)
 	private String schema_version;
 	public String getSchema_version() {
@@ -185,8 +184,8 @@ public class Message {
 	
 	@Schema(description = " Dict of options that can be sent with the query. Options are tool specific and not stipulated here (e.g.: {coalesce=True,threshold=0.9})",
 			required = false)
-	private Map<String, String> query_options;
-	public Map<String, String> getQuery_options() {
+	private HashMap<String, String> query_options;
+	public HashMap<String, String> getQuery_options() {
 		return query_options;
 	}
 
