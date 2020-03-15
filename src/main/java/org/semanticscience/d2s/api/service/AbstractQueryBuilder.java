@@ -25,7 +25,7 @@ public class AbstractQueryBuilder {
 		+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
 		+ "PREFIX schema: <http://schema.org/>\n"
 		+ "PREFIX omop: <http://api.ohdsi.org/WebAPI/vocabulary/concept/>\n"
-		+ "PREFIX cohd: <https://w3id.org/biolink/cohd/>\n";
+		+ "PREFIX cohd: <https://w3id.org/trek/cohd/>\n";
 	
 	protected static String paginate(Long page, Long limit) {
 		if (limit == null || limit > LIMIT || limit<1L)
