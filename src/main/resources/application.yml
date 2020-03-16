@@ -1,5 +1,5 @@
 default:
-  endpoint: https://graphdb.dumontierlab.com/repositories/trek
+  endpoint: http://graphdb.dumontierlab.com/repositories/trek
   # endpoint: http://localhost:7200/repositories/demo
 logging:
   level:
@@ -11,3 +11,10 @@ server:
 # Avoid getting null fields in JSON response
 spring.jackson.default-property-inclusion: non_default
 # non_empty includes more than non_null
+
+# Enable HTTPS: https://www.thomasvitale.com/https-spring-boot-ssl-certificate/
+# security.require-ssl: true
+# server.ssl.key-store: /etc/letsencrypt/live/seeld.eu/keystore.p12
+# server.ssl.key-store-password: springboot
+# server.ssl.keyStoreType: PKCS12
+# server.ssl.keyAlias: tomcat
