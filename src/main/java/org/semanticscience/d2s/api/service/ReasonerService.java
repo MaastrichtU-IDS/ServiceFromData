@@ -66,8 +66,8 @@ public class ReasonerService {
 				"      ]\n" + 
 				"    },\n" +
 				"    \"query_options\": {\n" +
-				"	   \"https://w3id.org/biolink/cohd/attribute/ttest\": \"1.5e+02\",\n" +
-				"	   \"https://w3id.org/biolink/cohd/attribute/pvalue\": \"1.338936e-87\"\n" +
+				"	   \"https://w3id.org/trek/cohd/attribute/ttest_results\": \"1.5e+02\",\n" +
+				"	   \"https://w3id.org/trek/cohd/attribute/ttest_pvalue\": \"1.338936e-87\"\n" +
 				"    }\n" + 
 				"  }\n" + 
 				"}\n" +
