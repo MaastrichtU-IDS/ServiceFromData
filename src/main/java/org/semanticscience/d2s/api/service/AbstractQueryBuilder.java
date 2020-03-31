@@ -11,6 +11,7 @@ public class AbstractQueryBuilder {
 		+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n"
 		+ "PREFIX bl: <https://w3id.org/biolink/vocab/>\n"
 		+ "PREFIX d2s: <https://w3id.org/d2s/>\n"
+		+ "PREFIX sio: <http://semanticscience.org/resource/>\n"
 		+ "PREFIX bio2rdf: <http://bio2rdf.org/>\n"
 		+ "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n"
 		+ "PREFIX dct: <http://purl.org/dc/terms/>\n"
