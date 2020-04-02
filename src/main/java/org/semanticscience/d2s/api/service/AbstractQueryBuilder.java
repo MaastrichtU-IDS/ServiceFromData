@@ -13,6 +13,7 @@ public class AbstractQueryBuilder {
 		+ "PREFIX d2s: <https://w3id.org/d2s/>\n"
 		+ "PREFIX sio: <http://semanticscience.org/resource/>\n"
 		+ "PREFIX bio2rdf: <http://bio2rdf.org/>\n"
+		+ "PREFIX covid: <http://idlab.github.io/covid19#>\n"
 		+ "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n"
 		+ "PREFIX dct: <http://purl.org/dc/terms/>\n"
 		+ "PREFIX dctypes: <http://purl.org/dc/dcmitype/>\n"
