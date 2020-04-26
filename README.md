@@ -26,7 +26,7 @@ Use `-e ENDPOINT=<biolink_sparql_endpoint_url>` environment switch to override d
 Using a specific endpoint and the [DockerHub image](https://hub.docker.com/repository/docker/umids/d2s-api):
 
 ```bash
-docker run -it --rm -p 80:8080 --net d2s-cwl-workflows_network -e ENDPOINT="http://graphdb:7200/repositories/test" umids/d2s-api
+docker run -it --rm -p 80:8080 --net d2s-core_network -e ENDPOINT="http://graphdb:7200/repositories/test" umids/d2s-api
 ```
 
 > Access at http://localhost/
