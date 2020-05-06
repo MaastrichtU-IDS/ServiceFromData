@@ -37,8 +37,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 		license = @License(name = "MIT License", url = "https://opensource.org/licenses/MIT"),
 		contact = @Contact(name = "Institute of Data Science at Maastricht University",
 				email = "vincent.emonet@maastrichtuniversity.nl",
-				url = "https://d2s.semanticscience.org")),
-	tags = { @Tag(name = "biolink"), @Tag(name = "clinical data"), @Tag(name = "OMOP"), @Tag(name = "Concept Associations"), @Tag(name = "drug") }
+				url = "https://d2s.semanticscience.org"))
 )
 @SpringBootApplication
 @RestController
