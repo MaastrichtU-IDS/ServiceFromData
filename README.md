@@ -26,7 +26,7 @@ Use `-e ENDPOINT=<biolink_sparql_endpoint_url>` environment switch to override d
 Using a specific endpoint and the [DockerHub image](https://hub.docker.com/repository/docker/umids/d2s-api):
 
 ```bash
-docker run -it --rm -p 80:8080 --net d2s-cwl-workflows_network -e ENDPOINT="http://graphdb:7200/repositories/test" umids/d2s-api
+docker run -it --rm -p 80:8080 --net d2s-core_network -e ENDPOINT="http://graphdb:7200/repositories/test" umids/d2s-api
 ```
 
 > Access at http://localhost/
@@ -56,8 +56,8 @@ java -jar target/d2s-api-0.9.0.jar
 
 ## Acknowledgments
 
-Alexander Malic for his concept and contribution with [serviceFromData](https://github.com/amalic/ServiceFromData)
+Alexander Malic for his concept and contribution with [rdfServices](https://github.com/amalic/rdfservices)
 
-Thanks Desson Ariawan for its detailed [tutorial on documenting Spring Boot REST API with SpringDoc + OpenAPI 3](https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/).
+Desson Ariawan for its detailed [tutorial on documenting Spring Boot REST API with SpringDoc + OpenAPI 3](https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-springdoc-openapi-3/).
 
-And Baeldung for their [tutorial about documenting a Spring REST API Using OpenAPI 3.0](https://www.baeldung.com/spring-rest-openapi-documentation).
+[Tutorial about documenting a Spring REST API Using OpenAPI 3.0](https://www.baeldung.com/spring-rest-openapi-documentation).
