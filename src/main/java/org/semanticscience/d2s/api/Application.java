@@ -38,7 +38,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 		contact = @Contact(name = "Institute of Data Science at Maastricht University",
 				email = "vincent.emonet@maastrichtuniversity.nl",
 				url = "https://d2s.semanticscience.org")),
-	tags = { @Tag(name = "translator"), @Tag(name = "biolink"), @Tag(name = "clinical data"), @Tag(name = "OMOP"), @Tag(name = "Concept Associations"), @Tag(name = "drug") }
+	tags = { @Tag(name = "biolink"), @Tag(name = "clinical data"), @Tag(name = "OMOP"), @Tag(name = "Concept Associations"), @Tag(name = "drug") }
 )
 @SpringBootApplication
 @RestController
