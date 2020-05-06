@@ -35,7 +35,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/reasoner/v1")
-@Tag(name = "Reasoner API", 
+@Tag(name = "translator", 
 	description = "Query BioLink-compliant datasets using the Reasoner API")
 public class ReasonerService {
 	@SuppressWarnings("unused")

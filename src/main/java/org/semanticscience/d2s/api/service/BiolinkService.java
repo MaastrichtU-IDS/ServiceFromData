@@ -22,8 +22,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/biolink/v1")
-@Tag(name = "Explore datasets", 
-	description = "Services to explore the TReK BioLink datasets classes and concepts.")
+@Tag(name = "query", 
+	description = "Services to query and explore the TReK BioLink datasets classes and concepts.")
 public class BiolinkService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(BiolinkService.class.getName());
