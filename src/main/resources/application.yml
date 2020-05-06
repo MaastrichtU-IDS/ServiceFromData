@@ -1,15 +1,26 @@
 default:
   endpoint: https://graphdb.dumontierlab.com/repositories/trek
   # endpoint: http://localhost:7200/repositories/demo
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    display-request-duration: true
+    operations-sorter: alpha 
+    tags-sorter: alpha
+
 logging:
   level:
     org:
       semanticscience: INFO
       springframework: ERROR
-server:
-  port: 8080
+
 # Avoid getting null fields in JSON response
-spring.jackson.default-property-inclusion: non_default
+spring:
+  jackson:
+    default-property-inclusion: non_default
 # non_empty includes more than non_null
 
 # Enable HTTPS: https://www.thomasvitale.com/https-spring-boot-ssl-certificate/
