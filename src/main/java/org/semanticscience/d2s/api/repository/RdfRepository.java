@@ -79,7 +79,7 @@ public class RdfRepository {
 			repo = new SPARQLRepository(endpoint);
 		}
 		if (!repo.isInitialized()) {
-			repo.initialize();
+			repo.init();
 			logger.info("Repository initialized");
 		}
 		return repo;
