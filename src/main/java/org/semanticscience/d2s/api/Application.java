@@ -16,8 +16,8 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 
 @OpenAPIDefinition(
-	info = @Info(title = "TReK Reasoner API", 
-		description = "Reasoner API for the Translator REd Knowledge graph, a BioLink-compliant RDF knowledge graph about Clinical Data.\n\n"
+	info = @Info(title = "TReK Clinical Reasoner API", 
+		description = "Reasoner API for the **T**ranslator **Re**d **K**nowledge graph, a BioLink-compliant RDF knowledge graph about Clinical Data.\n\n"
 				+ "This endpoint implements the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API) to query clinical data from the Columbia Open Health Data (COHD) integrated in a [BioLink-complying RDF](https://biolink.github.io/biolink-model/) triplestore, through a SPARQL endpoint. \n \n "
 				+ "COHD was developed at the [Columbia University Department of Biomedical Informatics](https://www.dbmi.columbia.edu/) "
 				+ "as a collaboration between the [Weng Lab](http://people.dbmi.columbia.edu/~chw7007/), [Tatonetti Lab](http://tatonettilab.org/), and the [NCATS Biomedical Data Translator program](https://ncats.nih.gov/translator) (Red Team).\n\n"
