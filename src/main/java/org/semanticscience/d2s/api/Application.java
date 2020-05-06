@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.info.License;
 				+ "COHD was developed at the [Columbia University Department of Biomedical Informatics](https://www.dbmi.columbia.edu/) "
 				+ "as a collaboration between the [Weng Lab](http://people.dbmi.columbia.edu/~chw7007/), [Tatonetti Lab](http://tatonettilab.org/), and the [NCATS Biomedical Data Translator program](https://ncats.nih.gov/translator) (Red Team).\n\n"
 				+ "This work was supported in part by grants: NCATS OT3TR002027, NLM R01LM009886-08A1, and NIGMS R01GM107145.\n\n" + 
+				+ "This API is registered as a Smart API at https://smart-api.info/registry?q=bc58469a9ec0567d4ca0032b35d27b7d\n\n" +
 				"The following external resources may be useful:\n" + 
 				"* [Reasoner API Specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API)\n" +
 				"* [BioLink model documentation](https://biolink.github.io/biolink-model/)\n" +
