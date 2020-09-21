@@ -46,26 +46,36 @@ public class Message {
 	}
 	
 	// TODO: process results here!
-	public void addQnodeResult(String id, BindingSet resultRow) {
+	public void addQnodeResult(QNode qnode, BindingSet resultRow) {
 //		System.out.println("addQnode");
 //		System.out.println(id);
 //		System.out.println(resultRow.getValue(id).stringValue());
 //		System.out.println(resultRow.getValue(id + "type").stringValue());
 //		System.out.println(resultRow.getValue(id + "name").stringValue());
-		this.knowledge_graph.addNode(resultRow.getValue(id).stringValue(), 
-				resultRow.getValue(id + "type").stringValue(),
-				resultRow.getValue(id + "name").stringValue());
+
+		// TODO: improve how we retrieve the name
+		String nodeName = null;
+		try {
+			// If found in the query
+			nodeName = resultRow.getValue(id + "name").stringValue();
+		} catch (Exception e) {}
+		this.knowledge_graph.addNode(resultRow.getValue(qnode.getId()).stringValue(),
+				qnode.getType(),
+				nodeName
+				// resultRow.getValue(id + "name").stringValue()
+				);
 		// Add NodeBinding to the latest result added to the list
-		this.results.get(results.size() - 1).addNodeBinding(id, resultRow.getValue(id).stringValue());
+		this.results.get(results.size() - 1).addNodeBinding(qnode.getId(), resultRow.getValue(qnode.getId()).stringValue());
 	}
-	public void addQedgeResult(String id, String sourceId, String targetId, BindingSet resultRow) {
-		this.knowledge_graph.addEdge(resultRow.getValue(id).stringValue(),
-				resultRow.getValue(id + "type").stringValue(),
+	public void addQedgeResult(QEdge qedge, String sourceId, String targetId, BindingSet resultRow) {
+		this.knowledge_graph.addEdge(resultRow.getValue(qedge.getId()).stringValue(),
+				// resultRow.getValue(id + "type").stringValue(),
+				qedge.getType(),
 				resultRow.getValue(sourceId).stringValue(),
 				resultRow.getValue(targetId).stringValue()
 				);
 		// Add EdgeBinding to the latest result added to the list
-		this.results.get(results.size() - 1).addEdgeBinding(id, resultRow.getValue(id).stringValue());
+		this.results.get(results.size() - 1).addEdgeBinding(qedge.getId(), resultRow.getValue(qedge.getId()).stringValue());
 	}
 	
 	@Schema(description = "RemoteKnowledgeGraph object that contains  connection information" + 

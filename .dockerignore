@@ -6,5 +6,4 @@ target
 .project
 .vscode
 .gitignore
-update_from_git.sh
 Jenkinsfile

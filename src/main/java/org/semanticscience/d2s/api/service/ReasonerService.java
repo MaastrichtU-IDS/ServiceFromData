@@ -50,25 +50,25 @@ public class ReasonerService {
     	, produces = {ResultAs.CONTENT_TYPE_JSON})
 	@Operation(summary="Execute a Reasoner API query on the BioLink-compliant triplestore.",
 		description="Query the BioLink-compliant knowledge graph using the [Reasoner API query specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API#top-level-message-class).\n\n"
-				+ "Use this example query for COHD:\n"
+				+ "Use this example query:\n"
 				+ "```json \n"
 				+ "{\n" + 
 				"  \"max_results\": 50,\n" + 
 				"  \"message\": {\n" + 
 				"    \"query_graph\": {\n" + 
 				"      \"nodes\": [\n" + 
-				"        { \"id\": \"n00\", \"type\": \"Procedure\" },\n" + 
-				"        { \"id\": \"n01\", \"type\": \"Drug\" }\n" + 
+				"        { \"id\": \"n00\", \"type\": \"Drug\" },\n" + 
+				"        { \"id\": \"n01\", \"type\": \"Disease\" }\n" + 
 				"      ],\n" + 
 				"      \"edges\": [\n" + 
 				"        { \"id\": \"e00\", \"type\": \"Association\",\n" + 
 				"          \"source_id\": \"n00\", \"target_id\": \"n01\" }\n" + 
 				"      ]\n" + 
-				"    },\n" +
-				"    \"query_options\": {\n" +
-				"	   \"https://w3id.org/trek/cohd/attribute/ttest_results\": \"1.5e+02\",\n" +
-				"	   \"https://w3id.org/trek/cohd/attribute/ttest_pvalue\": \"1.338936e-87\"\n" +
-				"    }\n" + 
+				"    }\n" +
+				// "    \"query_options\": {\n" +
+				// "	   \"https://w3id.org/trek/cohd/attribute/ttest_results\": \"1.5e+02\",\n" +
+				// "	   \"https://w3id.org/trek/cohd/attribute/ttest_pvalue\": \"1.338936e-87\"\n" +
+				// "    }\n" + 
 				"  }\n" + 
 				"}\n" +
 				"```")
@@ -91,18 +91,23 @@ public class ReasonerService {
 		// Build SPARQL query for each QNode and QEdge
 		for (QNode qNode : queryGraph.getNodes()) {
 			variablesArray.add(qNode.getId());
-			variablesArray.add(qNode.getId() + "type");
+			if (qNode.getType() == null || qNode.getType().isEmpty()) {
+				variablesArray.add(qNode.getId() + "type");
+			}
 			variablesArray.add(qNode.getId() + "name");
 			sparqlQuery += qNode.buildSparqlQuery();
 		}
 		for (QEdge qEdge : queryGraph.getEdges()) {
 			variablesArray.add(qEdge.getId());
-			variablesArray.add(qEdge.getId() + "type");
+			if (qEdge.getType() == null || qEdge.getType().isEmpty()) {
+				variablesArray.add(qEdge.getId() + "type");
+			}
 			sparqlQuery += qEdge.buildSparqlQuery(queryMessage.getQuery_options());
 		}
 		// Add SPARQL select part
 		String selectVariables = BiolinkQueryBuilder.PREFIXES + "SELECT DISTINCT ?" 
 				+ String.join(" ?", variablesArray);
+		// String selectVariables = BiolinkQueryBuilder.PREFIXES + "SELECT DISTINCT *";
 		
 		// Close SPARQL query
 		if (reasonerQuery.getMax_results() != 0) {
@@ -122,13 +127,13 @@ public class ReasonerService {
 			queryMessage.createResultBindings();
 			// Generate results for each QNode and QEdge
 			for (QNode qNode : queryGraph.getNodes()) {
-				queryMessage.addQnodeResult(qNode.getId(), resultRow);
+				queryMessage.addQnodeResult(qNode, resultRow);
 //				System.out.println(qNode.getId() + " qNode ID:");
 //				System.out.println(resultRow.getValue(qNode.getId()).stringValue());
 //				System.out.println(resultRow.getValue(qNode.getId() + "type").stringValue());
 			}
 			for (QEdge qEdge : queryGraph.getEdges()) {
-				queryMessage.addQedgeResult(qEdge.getId(), qEdge.getSource_id(), qEdge.getTarget_id(), resultRow);
+				queryMessage.addQedgeResult(qEdge, qEdge.getSource_id(), qEdge.getTarget_id(), resultRow);
 //				System.out.println(qEdge.getId() + " qEdge ID:");
 //				System.out.println(resultRow.getValue(qEdge.getId()).stringValue());
 //				System.out.println(resultRow.getValue(qEdge.getId() + "type").stringValue());
