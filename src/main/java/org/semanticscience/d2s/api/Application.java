@@ -16,19 +16,14 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 
 @OpenAPIDefinition(
-	info = @Info(title = "Knowledge Collaboratory Reasoner API", 
-		description = "Reasoner API for the Translator Personal Scientific Knowledge Graph and Knowledge Collaboratory.\n\n"
-				+ "This endpoint implements the [Reasoner API specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API) to query Nanopublications integrated in a [BioLink-complying RDF](https://biolink.github.io/biolink-model/) triplestore, through a SPARQL endpoint. \n \n "
-				+ "This work was supported in part by grants: NCATS OT3TR002027, NLM R01LM009886-08A1, and NIGMS R01GM107145.\n\n"
-				"The following external resources may be useful:\n" + 
-				"* [Reasoner API Specifications](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI/tree/master/API)\n" +
-				"* [BioLink model documentation](https://biolink.github.io/biolink-model/)\n" +,
+	info = @Info(title = "Knowledge Collaboratory", 
+		description = "Translator Reasoner API for the Personal Scientific Knowledge Graph and Knowledge Collaboratory",
 		termsOfService = "https://opensource.org/licenses/MIT",
 		version = "1.0",
 		license = @License(name = "MIT License", url = "https://opensource.org/licenses/MIT"),
 		contact = @Contact(name = "Institute of Data Science at Maastricht University",
 				email = "vincent.emonet@maastrichtuniversity.nl",
-				url = "https://github.com/vemonet/"))
+				url = "https://d2s.semanticscience.org"))
 )
 @SpringBootApplication
 @RestController
