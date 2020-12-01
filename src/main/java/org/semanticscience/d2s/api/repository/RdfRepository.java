@@ -2,7 +2,9 @@ package org.semanticscience.d2s.api.repository;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,11 +46,20 @@ public class RdfRepository {
 		}
 	}
 	
+	// Method to execute SPARQL queries for ReasonerAPI query resolution
 	public TupleQueryResult executeSparqlSelect(String queryString) {
 		logger.fine(queryString.trim().replaceAll("\\s+", " "));
-		Repository repo = getRepo();
+		SPARQLRepository repo = getRepo();
 		TupleQueryResult selectResults = null;
 		try {
+			Map<String, String> headers = new HashMap<String, String>();
+//			ResultAs.CONTENT_TYPE_JSON_SPARQL
+			// Change request header does not work: https://github.com/comunica/comunica/issues/762
+			// https://stackoverflow.com/questions/54269329/rdf4j-parse-query-result-from-endpoint-and-store-it-as-ntriples-file-malformed
+			headers.put("Accept", "application/sparql-results+json");
+			repo.setAdditionalHttpHeaders(headers);
+			System.out.println("Should accept header");
+			
 			RepositoryConnection conn = repo.getConnection();
 
 			TupleQuery tupleQuery = conn.prepareTupleQuery(queryString);

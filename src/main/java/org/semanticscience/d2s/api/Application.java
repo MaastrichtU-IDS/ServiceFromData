@@ -41,5 +41,5 @@ public class Application {
     	} catch (Exception e) {
     		logger.severe("Error: " + ExceptionUtils.getStackTrace(e));
     	}
-    } 
+    }
 }

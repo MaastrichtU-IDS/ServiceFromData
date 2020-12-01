@@ -1,5 +1,6 @@
 default:
-  endpoint: https://graphdb.dumontierlab.com/repositories/trek
+  endpoint: http://nanopub-sparql.137.120.31.102.nip.io/sparql
+  # endpoint: https://graphdb.dumontierlab.com/repositories/trek
   # endpoint: http://localhost:7200/repositories/demo
 
 server:
